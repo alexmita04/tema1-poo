@@ -1,6 +1,6 @@
-#Football Guessing Game
+# Football Guessing Game
 
-##Descriere :
+## Descriere :
 Memory Game este un joc de logica simplu, in care utilizatorul trebuie sa identifice si sa interactioneze cu jucatori de fotbal reprezentati ca, carduri.
 Scopul jocului este sa apese pe fiecare card doar o singura data, fara sa repete nicio selectie.
 Daca un card este apasat din nou sau se face o greseala, jocul va reveni la inceputul nivelului.
