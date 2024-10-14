@@ -1,4 +1,12 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+#Football Guessing Game
+
+##Descriere :
+Memory Game este un joc de logica simplu, in care utilizatorul trebuie sa identifice si sa interactioneze cu jucatori de fotbal reprezentati ca, carduri.
+Scopul jocului este sa apese pe fiecare card doar o singura data, fara sa repete nicio selectie.
+Daca un card este apasat din nou sau se face o greseala, jocul va reveni la inceputul nivelului.
+Dupa fiecare selectare de jucator, toate cardurile se vor amesteca pentru a face jocul mai complicat.
+Jocul este conceput pentru a testa memoria vizuala si capacitatea de a urmari rapid pozitiile cardurilor care se amesteca dupa fiecare selecte corecta.
+
 
 ### Important!
 Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
