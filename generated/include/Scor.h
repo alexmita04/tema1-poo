@@ -16,7 +16,7 @@ public:
 
     void set_scor_actual(int scor);
     void set_cel_mai_bun_scor(int scor);
-    void set_incercari(int incercari);
+    void set_incercari(int incercari_);
     int get_scor_actual();
     int get_cel_mai_bun_scor();
     int get_incercari();

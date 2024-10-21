@@ -21,9 +21,9 @@ void Scor::set_cel_mai_bun_scor(int scor)
     this->cel_mai_bun_scor = scor;
 }
 
-void Scor::set_incercari(int incercari)
+void Scor::set_incercari(int incercari_)
 {
-    this->incercari = incercari;
+    this->incercari = incercari_;
 }
 
 int Scor::get_scor_actual()
