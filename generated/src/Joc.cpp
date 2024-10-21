@@ -132,7 +132,7 @@ void Joc::tura_joc()
     size_t index;
     std::cin >> index;
 
-    if (index < 0 || index >= this->jucatori.size())
+    if (index >= this->jucatori.size())
     {
         std::cout << "Introdu un numar valid\n";
         return;
