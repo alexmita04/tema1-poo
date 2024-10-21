@@ -1,0 +1,26 @@
+Vinicius ST 20 23 1
+Rodrygo ST 21 23 2
+Bellingham MC 19 20 3
+Tchouameni MC 23 23 4
+Modric MC 38 38 5
+Militao DF 26 25 6
+Courtois GK 31 30 7
+Alaba DF 31 31 8
+
+Lewandowski ST 35 35 1
+Fati LW 21 20 2
+Pedri MC 21 21 3
+Gavi MC 19 19 4
+Raphinha RW 27 27 5
+Kounde DF 25 25 6
+Araujo DF 25 25 7
+Stegen GK 31 30 8
+
+Kimmich MC 28 28 1
+Müller FW 34 34 2
+Sane LW 27 27 3
+Gnabry RW 28 28 4
+Musiala AM 21 21 5
+Upamecano DF 25 25 6
+Davies DF 23 23 7
+Neuer GK 38 38 8

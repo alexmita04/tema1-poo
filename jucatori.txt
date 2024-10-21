@@ -1,0 +1,11 @@
+Vinicius ST 20 23 1
+Rodrygo ST 21 23 2
+Bellingham MC 19 20 3
+
+Lewandowski ST 35 35 1
+Fati LW 21 20 2
+Pedri MC 21 21 3
+
+Kimmich MC 28 28 1
+Müller FW 34 34 2
+Sane LW 27 27 3
