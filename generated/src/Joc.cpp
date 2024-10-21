@@ -119,10 +119,13 @@ void Joc::tura_joc()
 {
     int scor_a = this->scorul_jocului.get_scor_actual();
     int scor_b = this->scorul_jocului.get_cel_mai_bun_scor();
+    int scor_i = this->scorul_jocului.get_incercari();
 
-    std::cout << "Alege un jucator:\n"
-              << "Scor actual: " << scor_a << "\n"
-              << "Best score: " << scor_b << "\n";
+    std::cout
+        << "Alege un jucator:\n"
+        << "Scor actual: " << scor_a << "\n"
+        << "Best score: " << scor_b << "\n"
+        << "Incercari gresite pana acum: " << scor_i << "\n";
 
     for (size_t i = 0; i < jucatori.size(); i++)
     {
@@ -145,6 +148,13 @@ void Joc::tura_joc()
     {
         this->jucatori_selectati.clear();
         this->scorul_jocului.set_scor_actual(0);
+        this->scorul_jocului.set_incercari(scor_i + 1);
+        if (scor_i + 1 >= 3)
+        {
+            this->game_running = 0;
+            std::cout << "Din pacate ai pierdut...";
+            return;
+        }
         return;
     }
 
