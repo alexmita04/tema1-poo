@@ -23,7 +23,7 @@ public:
     Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori);
     friend std::ostream &operator<<(std::ostream &os, const Joc &joc);
     void start_game();
-    int cauta_jucator_in_jucatori_selectati(std::string nume_jucator);
+    int cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator);
     int check_game_over();
 
 private:

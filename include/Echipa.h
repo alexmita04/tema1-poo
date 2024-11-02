@@ -10,7 +10,7 @@ class Echipa
     std::string nationalitate;
 
 public:
-    Echipa(const std::string &nume_ = "", const std::string &nationalitate_ = "");
+    explicit Echipa(const std::string &nume_ = "", const std::string &nationalitate_ = "");
 
     friend std::istream &operator>>(std::istream &is, Echipa &echipa);
 

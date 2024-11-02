@@ -13,7 +13,7 @@ class Jucator
     int id;
 
 public:
-    Jucator(const std::string &nume_ = "", const std::string &post_ = "", int numar_tricou_ = 0, int varsta_ = 0, int id_ = 0);
+    explicit Jucator(const std::string &nume_ = "", const std::string &post_ = "", int numar_tricou_ = 0, int varsta_ = 0, int id_ = 0);
     Jucator(const Jucator &other);
     Jucator &operator=(const Jucator &other);
     ~Jucator();

@@ -15,7 +15,7 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
         return;
     }
 
-    std::string nume, nationalitate;
+    // std::string nume, nationalitate;
     while (true)
     {
         Echipa echipa;
@@ -96,7 +96,7 @@ void Joc::amesteca_jucatori()
     std::shuffle(jucatori.begin(), jucatori.end(), std::default_random_engine(std::random_device{}()));
 }
 
-int Joc::cauta_jucator_in_jucatori_selectati(std::string nume_jucator)
+int Joc::cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator)
 {
     int gasit = 0;
     for (size_t i = 0; i < this->jucatori_selectati.size(); i++)
