@@ -1,4 +1,4 @@
-#include "Echipa.h"
+#include "../include/Echipa.h"
 
 Echipa::Echipa(const std::string &nume_, const std::string &nationalitate_)
     : nume(nume_), nationalitate(nationalitate_) {}

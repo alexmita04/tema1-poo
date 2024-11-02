@@ -1,4 +1,4 @@
-#include "Joc.h"
+#include "../include/Joc.h"
 #include <algorithm>
 #include <random>
 

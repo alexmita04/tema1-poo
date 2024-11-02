@@ -1,4 +1,4 @@
-#include "Jucator.h"
+#include "../include/Jucator.h"
 
 Jucator::Jucator(const std::string &nume_, const std::string &post_, int numar_tricou_, int varsta_, int id_)
     : nume(nume_), post(post_), numar_tricou(numar_tricou_), varsta(varsta_), id(id_) {}

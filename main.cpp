@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include "generated/include/Jucator.h"
-#include "generated/include/Echipa.h"
-#include "generated/include/Scor.h"
-#include "generated/include/Joc.h"
+#include "include/Jucator.h"
+#include "include/Echipa.h"
+#include "include/Scor.h"
+#include "include/Joc.h"
 
 int main()
 {

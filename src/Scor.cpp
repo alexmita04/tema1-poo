@@ -1,4 +1,4 @@
-#include "Scor.h"
+#include "../include/Scor.h"
 
 Scor::Scor(int scor_actual_, int cel_mai_bun_scor_)
     : scor_actual(scor_actual_), cel_mai_bun_scor(cel_mai_bun_scor_), incercari(0) {}
