@@ -96,13 +96,13 @@ void Joc::amesteca_jucatori()
     std::shuffle(jucatori.begin(), jucatori.end(), std::default_random_engine(std::random_device{}()));
 }
 
-int Joc::cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator)
+bool Joc::cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator)
 {
-    int gasit = 0;
+    int gasit = false;
     for (size_t i = 0; i < this->jucatori_selectati.size(); i++)
     {
         if (this->jucatori_selectati[i] == nume_jucator)
-            gasit = 1;
+            gasit = true;
     }
 
     return gasit;
@@ -142,7 +142,7 @@ void Joc::tura_joc()
     std::string nume_jucator_ales = this->jucatori[index].get_nume();
     int gasit = this->cauta_jucator_in_jucatori_selectati(nume_jucator_ales);
 
-    if (gasit == 1)
+    if (gasit == true)
     {
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
