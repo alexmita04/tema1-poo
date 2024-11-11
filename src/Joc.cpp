@@ -142,7 +142,7 @@ void Joc::tura_joc()
     std::string nume_jucator_ales = this->jucatori[index].get_nume();
     int gasit = this->cauta_jucator_in_jucatori_selectati(nume_jucator_ales);
 
-    if (gasit == true)
+    if (gasit)
     {
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
