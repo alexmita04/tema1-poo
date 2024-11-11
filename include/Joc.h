@@ -24,7 +24,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Joc &joc);
     void start_game();
     int cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator);
-    int check_game_over();
+    bool check_game_over();
 
 private:
     void descriere_joc();

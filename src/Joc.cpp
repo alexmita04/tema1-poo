@@ -108,11 +108,9 @@ int Joc::cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator)
     return gasit;
 }
 
-int Joc::check_game_over()
+bool Joc::check_game_over()
 {
-    if (this->jucatori_selectati.size() == this->jucatori.size())
-        return 1;
-    return 0;
+    return this->jucatori_selectati.size() == this->jucatori.size();
 }
 
 void Joc::tura_joc()
