@@ -12,7 +12,13 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
     std::ifstream fin_echipe(fisier_echipe);
     if (!fin_echipe)
     {
-        std::cout << "Nu s-a putut deschide fisierul pentru echipe!\n";
+        std::cout << "===============================================\n"
+                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
+                  << "===============================================\n"
+                  << "Nu s-a putut deschide fisierul pentru echipe!\n"
+                  << "Asigura-te ca fisierul exista si este accesibil.\n"
+                  << "===============================================\n";
+
         return;
     }
 
@@ -30,7 +36,14 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
     std::ifstream fin_jucatori(fisier_jucatori);
     if (!fin_jucatori)
     {
-        std::cout << "Nu s-a putut deschide fisierul pentru jucatori!\n";
+        std::cout << "===============================================\n"
+                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
+                  << "===============================================\n"
+                  << "Nu s-a putut deschide fisierul pentru jucatori!\n"
+                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
+                  << "Asigura-te ca calea catre fisier este corecta.\n"
+                  << "===============================================\n";
+
         return;
     }
 
@@ -146,7 +159,11 @@ void Joc::tura_joc()
     }
     else if (index >= this->jucatori.size())
     {
-        std::cout << "Introdu un numar valid\n";
+        std::cout << "Introdu un numar valid.\n"
+                  << "Te rog sa alegi un index intre 0 si "
+                  << this->jucatori.size() - 1 << ",\n"
+                  << "care reprezinta jucatorii disponibili.\n";
+
         return;
     }
 
@@ -166,7 +183,16 @@ void Joc::tura_joc()
         if (this->scorul_jocului.verifica_incercari())
         {
             this->game_running = 0;
-            std::cout << "Din pacate ai pierdut...\n";
+            std::cout << "===============================================\n"
+                      << "               Din pacate ai pierdut...       \n"
+                      << "===============================================\n"
+                      << "Ai incercat sa alegi un jucator deja selectat,\n"
+                      << "si din aceasta cauza jocul tau a fost resetat.\n"
+                      << "Incearca sa fii mai atent la jucatorii pe care ii alegi.\n"
+                      << "Nu te descuraja! Poate data viitoare vei fi mai norocos.\n"
+                      << "Memoreaza jucatorii si nu-i alege de doua ori!\n"
+                      << "===============================================\n";
+
             return;
         }
         return;
@@ -184,7 +210,18 @@ void Joc::tura_joc()
     if (game_over)
     {
         this->game_running = 0;
-        std::cout << "CONGRATS AI CASTIGAT!\n";
+        std::cout << "===============================================\n"
+                  << "                  FELICITARI!                 \n"
+                  << "===============================================\n"
+                  << "Ai reusit sa castigi jocul! Felicitari pentru\n"
+                  << "memoria ta excelenta si pentru atentia de care\n"
+                  << "ai dat dovada in timpul jocului.\n"
+                  << "Ai reusit sa alegi toti jucatorii fara sa te\n"
+                  << "repeti, ceea ce este o realizare mare!\n"
+                  << "Este o dovada de concentrare si perserverenta.\n"
+                  << "Speram ca te-ai distrat si ca te vei intoarce\n"
+                  << "pentru o noua provocare in curand.\n"
+                  << "===============================================\n";
     }
 }
 

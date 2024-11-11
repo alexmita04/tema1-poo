@@ -29,13 +29,13 @@ std::istream &operator>>(std::istream &is, Jucator &jucator)
 
 std::ostream &operator<<(std::ostream &os, const Jucator &jucator)
 {
-    // os << "Nume: " << jucator.nume << "\n"
-    //    << "Post: " << jucator.post << "\n"
-    //    << "Numar tricou: " << jucator.numar_tricou << "\n"
-    //    << "Varsta: " << jucator.varsta << "\n"
-    //    << "Id: " << jucator.id << "\n";
+    os << "Nume: " << jucator.nume << " "
+       << "Post: " << jucator.post << " "
+       << "Numar tricou: " << jucator.numar_tricou << " "
+       << "Varsta: " << jucator.varsta << " "
+       << "Id: " << jucator.id << "\n";
 
-    os << "Nume: " << jucator.nume << "\n";
+    // os << "Nume: " << jucator.nume << "\n";
 
     return os;
 }

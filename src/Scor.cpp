@@ -5,9 +5,17 @@ Scor::Scor(int scor_actual_, int cel_mai_bun_scor_)
 
 std::ostream &operator<<(std::ostream &os, const Scor &scor)
 {
-    os << "Scor Actual: " << scor.scor_actual << "\n"
-       << "Cel mai bun scor: " << scor.cel_mai_bun_scor << "\n"
-       << "Incercari gresite pana acum: " << scor.incercari << "\n";
+    os << "==============================================\n"
+       << "                SCOR ACTUAL                  \n"
+       << "==============================================\n"
+       << "Scor Actual:            "
+       << scor.scor_actual << "\n"
+       << "Cel mai bun scor:      "
+       << scor.cel_mai_bun_scor << "\n"
+       << "Incercari gresite:     "
+       << scor.incercari << "\n"
+       << "==============================================\n";
+
     return os;
 }
 
@@ -43,5 +51,10 @@ bool Scor::verifica_incercari()
 
 void Scor::afisare_scor_actual_dupa_greseala()
 {
-    std::cout << "Scorul tau inainte de a gresi era: " << this->scor_actual << "\n";
+    std::cout << "===============================================\n"
+              << "       SCORUL TAU INAINTE DE A GRESI          \n"
+              << "===============================================\n"
+              << "Scorul tau inainte de a gresi era:          "
+              << this->scor_actual << "\n"
+              << "===============================================\n";
 }

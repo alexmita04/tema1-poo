@@ -11,7 +11,12 @@ std::istream &operator>>(std::istream &is, Echipa &echipa)
 
 std::ostream &operator<<(std::ostream &os, const Echipa &echipa)
 {
-    os << "Numele echipei: " << echipa.nume << "\n"
-       << "Nationalitate: " << echipa.nationalitate << "\n";
+    os << "===========================================\n"
+       << "        DETALII ECHIPA                    \n"
+       << "===========================================\n"
+       << "Numele echipei:        " << echipa.nume << "\n"
+       << "Nationalitate:         " << echipa.nationalitate << "\n"
+       << "===========================================\n";
+
     return os;
 }
