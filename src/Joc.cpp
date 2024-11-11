@@ -145,9 +145,9 @@ void Joc::tura_joc()
     if (gasit == 1)
     {
         this->jucatori_selectati.clear();
-        this->scorul_jocului.set_scor_actual(0);
-        this->scorul_jocului.set_incercari(scor_i + 1);
-        if (scor_i + 1 >= 3)
+        this->scorul_jocului.resetare_scor();
+        this->scorul_jocului.incrementare_incercari();
+        if (this->scorul_jocului.get_incercari() >= 3)
         {
             this->game_running = 0;
             std::cout << "Din pacate ai pierdut...";
@@ -156,13 +156,8 @@ void Joc::tura_joc()
         return;
     }
 
-    scor_a += 1;
-
     this->jucatori_selectati.push_back(nume_jucator_ales);
-    this->scorul_jocului.set_scor_actual(scor_a);
-
-    if (scor_a > scor_b)
-        this->scorul_jocului.set_cel_mai_bun_scor(scor_a);
+    this->scorul_jocului.incrementare_scor_actual();
 
     int game_over = this->check_game_over();
     if (game_over)

@@ -11,19 +11,28 @@ std::ostream &operator<<(std::ostream &os, const Scor &scor)
     return os;
 }
 
-void Scor::set_scor_actual(int scor)
+void Scor::incrementare_scor_actual()
 {
-    this->scor_actual = scor;
+    this->scor_actual += 1;
+    this->actualizare_cel_mai_bun_scor();
 }
 
-void Scor::set_cel_mai_bun_scor(int scor)
+void Scor::resetare_scor()
 {
-    this->cel_mai_bun_scor = scor;
+    this->scor_actual = 0;
 }
 
-void Scor::set_incercari(int incercari_)
+void Scor::incrementare_incercari()
 {
-    this->incercari = incercari_;
+    this->incercari += 1;
+}
+
+void Scor::actualizare_cel_mai_bun_scor()
+{
+    if (this->scor_actual > this->cel_mai_bun_scor)
+    {
+        this->cel_mai_bun_scor = this->scor_actual;
+    }
 }
 
 int Scor::get_scor_actual()
@@ -40,3 +49,19 @@ int Scor::get_incercari()
 {
     return this->incercari;
 }
+
+// void Scor::set_scor_actual(int scor)
+
+// {
+//     this->scor_actual = scor;
+// }
+
+// void Scor::set_cel_mai_bun_scor(int scor)
+// {
+//     this->cel_mai_bun_scor = scor;
+// }
+
+// void Scor::set_incercari(int incercari_)
+// {
+//     this->incercari = incercari_;
+// }
