@@ -33,6 +33,7 @@ private:
     void tura_joc();
     long long calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono::high_resolution_clock> &start,
                                       const std::chrono::time_point<std::chrono::high_resolution_clock> &end);
+    size_t genereaza_jucator_random();
 };
 
 #endif

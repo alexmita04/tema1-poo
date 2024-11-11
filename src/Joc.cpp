@@ -126,7 +126,10 @@ void Joc::tura_joc()
     auto timp_start = std::chrono::high_resolution_clock::now();
 
     std::cout
-        << "Alege un jucator:\n"
+        << "Alege un jucator, si nu uita,\n"
+        << "daca nu te poti decide ce jucator\n"
+        << "si vrei sa lasi aceasta alegere\n"
+        << "in voia calculatorului, tasteaza 999:\n"
         << this->scorul_jocului
         << "\n";
 
@@ -137,8 +140,11 @@ void Joc::tura_joc()
 
     size_t index;
     std::cin >> index;
-
-    if (index >= this->jucatori.size())
+    if (index == 999)
+    {
+        this->genereaza_jucator_random();
+    }
+    else if (index >= this->jucatori.size())
     {
         std::cout << "Introdu un numar valid\n";
         return;
@@ -180,4 +186,20 @@ void Joc::tura_joc()
         this->game_running = 0;
         std::cout << "CONGRATS AI CASTIGAT!\n";
     }
+}
+
+size_t Joc::genereaza_jucator_random()
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<> distributie(0, this->jucatori.size() - 1);
+
+    size_t numar = distributie(gen);
+
+    std::cout << "Ai ales functia 999 care a ales in locul tau urmatorul jucator: "
+              << this->jucatori[numar].get_nume()
+              << "\n";
+
+    return numar;
 }
