@@ -1,6 +1,7 @@
 #include "../include/Joc.h"
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 Joc::Joc(const Scor &scorul_jocului_, const std::vector<Echipa> &echipe_, const std::vector<Jucator> &jucatori_)
     : scorul_jocului(scorul_jocului_), echipe(echipe_), jucatori(jucatori_), jucatori_selectati(), game_running(0) {}
@@ -112,8 +113,18 @@ bool Joc::check_game_over()
     return this->jucatori_selectati.size() == this->jucatori.size();
 }
 
+long long Joc::calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono::high_resolution_clock> &start,
+                                       const std::chrono::time_point<std::chrono::high_resolution_clock> &sfarsit)
+{
+    auto durata = std::chrono::duration_cast<std::chrono::seconds>(sfarsit - start);
+    return durata.count();
+}
+
 void Joc::tura_joc()
 {
+
+    auto timp_start = std::chrono::high_resolution_clock::now();
+
     std::cout
         << "Alege un jucator:\n"
         << this->scorul_jocului
@@ -141,6 +152,11 @@ void Joc::tura_joc()
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
         this->scorul_jocului.incrementare_incercari();
+
+        auto timp_sfarsit = std::chrono::high_resolution_clock::now();
+        long long durata = calculeaza_timpul_scurs(timp_start, timp_sfarsit);
+        std::cout << "Timpul scurs: " << durata << " secunde" << std::endl;
+
         if (this->scorul_jocului.verifica_incercari())
         {
             this->game_running = 0;
@@ -154,6 +170,11 @@ void Joc::tura_joc()
     this->scorul_jocului.incrementare_scor_actual();
 
     int game_over = this->check_game_over();
+
+    auto timp_sfarsit = std::chrono::high_resolution_clock::now();
+    long long durata = calculeaza_timpul_scurs(timp_start, timp_sfarsit);
+    std::cout << "Timpul scurs: " << durata << " secunde" << std::endl;
+
     if (game_over)
     {
         this->game_running = 0;

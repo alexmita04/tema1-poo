@@ -72,6 +72,9 @@
     "type_traits": "cpp",
     "utility": "cpp",
     "format": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "forward_list": "cpp",
+    "chrono": "cpp",
+    "text_encoding": "cpp"
   }
 }

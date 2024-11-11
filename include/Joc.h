@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <random>
+#include <chrono>
 #include "Scor.h"
 #include "Echipa.h"
 #include "Jucator.h"
@@ -30,6 +31,8 @@ private:
     void descriere_joc();
     void amesteca_jucatori();
     void tura_joc();
+    long long calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono::high_resolution_clock> &start,
+                                      const std::chrono::time_point<std::chrono::high_resolution_clock> &end);
 };
 
 #endif
