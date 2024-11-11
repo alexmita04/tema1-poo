@@ -35,33 +35,7 @@ void Scor::actualizare_cel_mai_bun_scor()
     }
 }
 
-int Scor::get_scor_actual()
+bool Scor::verifica_incercari()
 {
-    return this->scor_actual;
+    return this->incercari >= 3;
 }
-
-int Scor::get_cel_mai_bun_scor()
-{
-    return this->cel_mai_bun_scor;
-}
-
-int Scor::get_incercari()
-{
-    return this->incercari;
-}
-
-// void Scor::set_scor_actual(int scor)
-
-// {
-//     this->scor_actual = scor;
-// }
-
-// void Scor::set_cel_mai_bun_scor(int scor)
-// {
-//     this->cel_mai_bun_scor = scor;
-// }
-
-// void Scor::set_incercari(int incercari_)
-// {
-//     this->incercari = incercari_;
-// }

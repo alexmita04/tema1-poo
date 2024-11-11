@@ -142,10 +142,10 @@ void Joc::tura_joc()
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
         this->scorul_jocului.incrementare_incercari();
-        if (this->scorul_jocului.get_incercari() >= 3)
+        if (this->scorul_jocului.verifica_incercari())
         {
             this->game_running = 0;
-            std::cout << "Din pacate ai pierdut...";
+            std::cout << "Din pacate ai pierdut...\n";
             return;
         }
         return;
