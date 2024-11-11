@@ -115,15 +115,10 @@ bool Joc::check_game_over()
 
 void Joc::tura_joc()
 {
-    int scor_a = this->scorul_jocului.get_scor_actual();
-    int scor_b = this->scorul_jocului.get_cel_mai_bun_scor();
-    int scor_i = this->scorul_jocului.get_incercari();
-
     std::cout
         << "Alege un jucator:\n"
-        << "Scor actual: " << scor_a << "\n"
-        << "Best score: " << scor_b << "\n"
-        << "Incercari gresite pana acum: " << scor_i << "\n";
+        << this->scorul_jocului
+        << "\n";
 
     for (size_t i = 0; i < jucatori.size(); i++)
     {
