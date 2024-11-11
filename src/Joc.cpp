@@ -15,7 +15,6 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
         return;
     }
 
-    // std::string nume, nationalitate;
     while (true)
     {
         Echipa echipa;

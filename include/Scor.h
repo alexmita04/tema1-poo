@@ -21,6 +21,7 @@ public:
 
 private:
     void actualizare_cel_mai_bun_scor();
+    void afisare_scor_actual_dupa_greseala();
 };
 
 #endif

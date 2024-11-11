@@ -19,6 +19,7 @@ void Scor::incrementare_scor_actual()
 
 void Scor::resetare_scor()
 {
+    this->afisare_scor_actual_dupa_greseala();
     this->scor_actual = 0;
 }
 
@@ -38,4 +39,9 @@ void Scor::actualizare_cel_mai_bun_scor()
 bool Scor::verifica_incercari()
 {
     return this->incercari >= 3;
+}
+
+void Scor::afisare_scor_actual_dupa_greseala()
+{
+    std::cout << "Scorul tau inainte de a gresi era: " << this->scor_actual << "\n";
 }
