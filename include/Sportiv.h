@@ -13,6 +13,8 @@ private:
     int id;
 
 public:
+    static int counter_jucatori;
+
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
     virtual ~Sportiv();
 
@@ -40,8 +42,11 @@ class JucatorFotbal : public Sportiv
     void citire(std::istream &is) override;
 
 public:
+    static int counter_jucatori_fotbal;
+
     JucatorFotbal();
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
+    ~JucatorFotbal();
 
     std::unique_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
@@ -54,8 +59,11 @@ class JucatorBox : public Sportiv
     void citire(std::istream &is) override;
 
 public:
+    static int counter_jucatori_box;
+
     JucatorBox();
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
+    ~JucatorBox();
 
     std::unique_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
@@ -68,8 +76,11 @@ class JucatorInot : public Sportiv
     void citire(std::istream &is) override;
 
 public:
+    static int counter_jucatori_inot;
+
     JucatorInot();
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
+    ~JucatorInot();
 
     std::unique_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
