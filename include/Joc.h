@@ -18,6 +18,7 @@ class Joc
     std::vector<JucatorFotbal> jucatori_fotbal;
     std::vector<JucatorBox> jucatori_box;
     std::vector<JucatorInot> jucatori_inot;
+    std::vector<std::unique_ptr<Sportiv>> jucatori;
     std::vector<std::string> jucatori_selectati;
     int game_running;
 
@@ -31,6 +32,8 @@ public:
         const std::string &fisier_sportivi_fotbal,
         const std::string &fisier_sportivi_box,
         const std::string &fisier_sportivi_inot);
+    // ~Joc();
+
     friend std::ostream &operator<<(std::ostream &os, const Joc &joc);
     void start_game();
     bool cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator);
@@ -43,6 +46,7 @@ private:
     long long calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono::high_resolution_clock> &start,
                                       const std::chrono::time_point<std::chrono::high_resolution_clock> &end);
     size_t genereaza_jucator_random();
+    void populate_jucatori();
 };
 
 #endif

@@ -46,7 +46,7 @@ add_executable(${PROJECT_NAME}
     main.cpp
     src/Echipa.cpp
     src/Joc.cpp
-    src/Jucator.cpp
+    src/Sportiv.cpp
     src/Scor.cpp
 )
 
@@ -71,6 +71,6 @@ if(APPLE)
 endif()
 
 include(cmake/CopyHelper.cmake)
-copy_files(FILES tastatura.txt echipe.txt jucatori.txt jucatori-more.txt)
+copy_files(FILES tastatura.txt echipe.txt sportivi_fotbal.txt sportivi_box.txt sportivi_inot.txt)
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds)
 # copy_files(DIRECTORY images sounds)

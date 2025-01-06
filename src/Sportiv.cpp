@@ -29,6 +29,11 @@ std::unique_ptr<Sportiv> JucatorFotbal::clone() const
     return std::make_unique<JucatorFotbal>(*this);
 }
 
+bool JucatorFotbal::nuEsteFotbalist() const
+{
+    return false;
+}
+
 void JucatorFotbal::citeste(std::istream &is)
 {
     is >> nume >> varsta >> id >> post >> numar_tricou;
@@ -50,6 +55,11 @@ std::unique_ptr<Sportiv> JucatorBox::clone() const
     return std::make_unique<JucatorBox>(*this);
 }
 
+bool JucatorBox::nuEsteFotbalist() const
+{
+    return true;
+}
+
 void JucatorBox::citeste(std::istream &is)
 {
     is >> nume >> varsta >> id >> greutate;
@@ -69,6 +79,11 @@ JucatorInot::JucatorInot(const std::string &nume_, int varsta_, int id_, double 
 std::unique_ptr<Sportiv> JucatorInot::clone() const
 {
     return std::make_unique<JucatorInot>(*this);
+}
+
+bool JucatorInot::nuEsteFotbalist() const
+{
+    return true;
 }
 
 void JucatorInot::citeste(std::istream &is)

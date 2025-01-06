@@ -13,6 +13,7 @@ Joc::Joc(const Scor &scorul_jocului_,
       jucatori_fotbal(jucatori_fotbal_),
       jucatori_box(jucaotri_box_),
       jucatori_inot(jucatori_inot_),
+      jucatori(),
       jucatori_selectati(),
       game_running(0) {}
 
@@ -20,7 +21,10 @@ Joc::Joc(const std::string &fisier_echipe,
          const std::string &fisier_sportivi_fotbal,
          const std::string &fisier_sportivi_box,
          const std::string &fisier_sportivi_inot)
-    : scorul_jocului(0, 0), jucatori_selectati(), game_running(0)
+    : scorul_jocului(0, 0),
+      jucatori(),
+      jucatori_selectati(),
+      game_running(0)
 {
     std::ifstream fin_echipe(fisier_echipe);
     if (!fin_echipe)
@@ -120,7 +124,14 @@ Joc::Joc(const std::string &fisier_echipe,
     }
 
     fin_jucatori_inot.close();
+
+    this->populate_jucatori();
 }
+
+// Joc::~Joc()
+// {
+//     delete jucatori;
+// }
 
 std::ostream &operator<<(std::ostream &os, const Joc &joc)
 {
@@ -129,25 +140,34 @@ std::ostream &operator<<(std::ostream &os, const Joc &joc)
     os << "Echipe:\n";
     for (const auto &echipa : joc.echipe)
     {
-        os << echipa;
+        os << echipa << "\n";
     }
 
     os << "Sportivi Fotbal:\n";
     for (const auto &jucator : joc.jucatori_fotbal)
     {
-        os << jucator;
+        os << jucator << "\n";
     }
 
     os << "Sportivi Box:\n";
     for (const auto &jucator : joc.jucatori_box)
     {
-        os << jucator;
+        os << jucator << "\n";
     }
 
     os << "Sportivi Inot:\n";
     for (const auto &jucator : joc.jucatori_inot)
     {
-        os << jucator;
+        os << jucator << "\n";
+    }
+
+    os << "Toti jucatorii (vectorul jucatori):\n";
+    for (const auto &jucator : joc.jucatori)
+    {
+        if (jucator)
+        {
+            os << *jucator << "\n";
+        }
     }
 
     return os;
@@ -200,7 +220,7 @@ bool Joc::cauta_jucator_in_jucatori_selectati(const std::string &nume_jucator)
 
 bool Joc::check_game_over()
 {
-    return this->jucatori_selectati.size() == this->jucatori.size();
+    return this->jucatori_selectati.size() == this->jucatori_fotbal.size();
 }
 
 long long Joc::calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono::high_resolution_clock> &start,
@@ -209,6 +229,98 @@ long long Joc::calculeaza_timpul_scurs(const std::chrono::time_point<std::chrono
     auto durata = std::chrono::duration_cast<std::chrono::seconds>(sfarsit - start);
     return durata.count();
 }
+
+// void Joc::tura_joc()
+// {
+
+//     auto timp_start = std::chrono::high_resolution_clock::now();
+
+//     std::cout
+//         << "Alege un jucator, si nu uita,\n"
+//         << "daca nu te poti decide ce jucator\n"
+//         << "si vrei sa lasi aceasta alegere\n"
+//         << "in voia calculatorului, tasteaza 999:\n"
+//         << this->scorul_jocului
+//         << "\n";
+
+//     for (size_t i = 0; i < jucatori_fotbal.size(); i++)
+//     {
+//         std::cout << i << ". " << jucatori_fotbal[i] << "\n";
+//     }
+
+//     size_t index;
+//     std::cin >> index;
+//     if (index == 999)
+//     {
+//         this->genereaza_jucator_random();
+//     }
+//     else if (index >= this->jucatori_fotbal.size())
+//     {
+//         std::cout << "Introdu un numar valid.\n"
+//                   << "Te rog sa alegi un index intre 0 si "
+//                   << this->jucatori_fotbal.size() - 1 << ",\n"
+//                   << "care reprezinta jucatorii disponibili.\n";
+
+//         return;
+//     }
+
+//     std::string nume_jucator_ales = this->jucatori_fotbal[index].getNume();
+//     int gasit = this->cauta_jucator_in_jucatori_selectati(nume_jucator_ales);
+
+//     if (gasit)
+//     {
+//         this->jucatori_selectati.clear();
+//         this->scorul_jocului.resetare_scor();
+//         this->scorul_jocului.incrementare_incercari();
+
+//         auto timp_sfarsit = std::chrono::high_resolution_clock::now();
+//         long long durata = calculeaza_timpul_scurs(timp_start, timp_sfarsit);
+//         std::cout << "Timpul scurs: " << durata << " secunde" << std::endl;
+
+//         if (this->scorul_jocului.verifica_incercari())
+//         {
+//             this->game_running = 0;
+//             std::cout << "===============================================\n"
+//                       << "               Din pacate ai pierdut...       \n"
+//                       << "===============================================\n"
+//                       << "Ai incercat sa alegi un jucator deja selectat,\n"
+//                       << "si din aceasta cauza jocul tau a fost resetat.\n"
+//                       << "Incearca sa fii mai atent la jucatorii pe care ii alegi.\n"
+//                       << "Nu te descuraja! Poate data viitoare vei fi mai norocos.\n"
+//                       << "Memoreaza jucatorii si nu-i alege de doua ori!\n"
+//                       << "===============================================\n";
+
+//             return;
+//         }
+//         return;
+//     }
+
+//     this->jucatori_selectati.push_back(nume_jucator_ales);
+//     this->scorul_jocului.incrementare_scor_actual();
+
+//     int game_over = this->check_game_over();
+
+//     auto timp_sfarsit = std::chrono::high_resolution_clock::now();
+//     long long durata = calculeaza_timpul_scurs(timp_start, timp_sfarsit);
+//     std::cout << "Timpul scurs: " << durata << " secunde" << std::endl;
+
+//     if (game_over)
+//     {
+//         this->game_running = 0;
+//         std::cout << "===============================================\n"
+//                   << "                  FELICITARI!                 \n"
+//                   << "===============================================\n"
+//                   << "Ai reusit sa castigi jocul! Felicitari pentru\n"
+//                   << "memoria ta excelenta si pentru atentia de care\n"
+//                   << "ai dat dovada in timpul jocului.\n"
+//                   << "Ai reusit sa alegi toti jucatorii fara sa te\n"
+//                   << "repeti, ceea ce este o realizare mare!\n"
+//                   << "Este o dovada de concentrare si perserverenta.\n"
+//                   << "Speram ca te-ai distrat si ca te vei intoarce\n"
+//                   << "pentru o noua provocare in curand.\n"
+//                   << "===============================================\n";
+//     }
+// }
 
 void Joc::tura_joc()
 {
@@ -225,7 +337,7 @@ void Joc::tura_joc()
 
     for (size_t i = 0; i < jucatori.size(); i++)
     {
-        std::cout << i << ". " << jucatori[i] << "\n";
+        std::cout << i << ". " << *jucatori[i] << "\n";
     }
 
     size_t index;
@@ -244,10 +356,10 @@ void Joc::tura_joc()
         return;
     }
 
-    std::string nume_jucator_ales = this->jucatori[index].get_nume();
+    std::string nume_jucator_ales = this->jucatori[index]->getNume();
     int gasit = this->cauta_jucator_in_jucatori_selectati(nume_jucator_ales);
 
-    if (gasit)
+    if (gasit || this->jucatori[index]->nuEsteFotbalist())
     {
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
@@ -312,8 +424,26 @@ size_t Joc::genereaza_jucator_random()
     size_t numar = distributie(gen);
 
     std::cout << "Ai ales functia 999 care a ales in locul tau urmatorul jucator: "
-              << this->jucatori[numar].get_nume()
+              << this->jucatori[numar]->getNume()
               << "\n";
 
     return numar;
+}
+
+void Joc::populate_jucatori()
+{
+    for (const auto &fotbalist : jucatori_fotbal)
+    {
+        jucatori.push_back(fotbalist.clone());
+    }
+
+    for (const auto &boxer : jucatori_box)
+    {
+        jucatori.push_back(boxer.clone());
+    }
+
+    for (const auto &inotator : jucatori_inot)
+    {
+        jucatori.push_back(inotator.clone());
+    }
 }
