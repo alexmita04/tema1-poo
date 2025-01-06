@@ -75,6 +75,12 @@
     "thread": "cpp",
     "forward_list": "cpp",
     "chrono": "cpp",
-    "text_encoding": "cpp"
+    "text_encoding": "cpp",
+    "codecvt": "cpp",
+    "functional": "cpp",
+    "numbers": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "cinttypes": "cpp"
   }
 }
