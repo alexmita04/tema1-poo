@@ -39,7 +39,7 @@ public:
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const;
+    virtual bool nuEsteFotbalist() const override;
     void citeste(std::istream &is) override;
     void scrie(std::ostream &os) const override;
 };
@@ -53,7 +53,7 @@ public:
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const;
+    virtual bool nuEsteFotbalist() const override;
     void citeste(std::istream &is) override;
     void scrie(std::ostream &os) const override;
 };
@@ -67,7 +67,7 @@ public:
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const;
+    virtual bool nuEsteFotbalist() const override;
     void citeste(std::istream &is) override;
     void scrie(std::ostream &os) const override;
 };
