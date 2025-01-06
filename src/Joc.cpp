@@ -3,10 +3,23 @@
 #include <random>
 #include <chrono>
 
-Joc::Joc(const Scor &scorul_jocului_, const std::vector<Echipa> &echipe_, const std::vector<Jucator> &jucatori_)
-    : scorul_jocului(scorul_jocului_), echipe(echipe_), jucatori(jucatori_), jucatori_selectati(), game_running(0) {}
+Joc::Joc(const Scor &scorul_jocului_,
+         const std::vector<Echipa> &echipe_,
+         const std::vector<JucatorFotbal> &jucatori_fotbal_,
+         const std::vector<JucatorBox> &jucaotri_box_,
+         const std::vector<JucatorInot> &jucatori_inot_)
+    : scorul_jocului(scorul_jocului_),
+      echipe(echipe_),
+      jucatori_fotbal(jucatori_fotbal_),
+      jucatori_box(jucaotri_box_),
+      jucatori_inot(jucatori_inot_),
+      jucatori_selectati(),
+      game_running(0) {}
 
-Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
+Joc::Joc(const std::string &fisier_echipe,
+         const std::string &fisier_sportivi_fotbal,
+         const std::string &fisier_sportivi_box,
+         const std::string &fisier_sportivi_inot)
     : scorul_jocului(0, 0), jucatori_selectati(), game_running(0)
 {
     std::ifstream fin_echipe(fisier_echipe);
@@ -33,13 +46,13 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
 
     fin_echipe.close();
 
-    std::ifstream fin_jucatori(fisier_jucatori);
-    if (!fin_jucatori)
+    std::ifstream fin_jucatori_fotbal(fisier_sportivi_fotbal);
+    if (!fin_jucatori_fotbal)
     {
         std::cout << "===============================================\n"
                   << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
                   << "===============================================\n"
-                  << "Nu s-a putut deschide fisierul pentru jucatori!\n"
+                  << "Nu s-a putut deschide fisierul pentru fotbalisti!\n"
                   << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
                   << "Asigura-te ca calea catre fisier este corecta.\n"
                   << "===============================================\n";
@@ -49,14 +62,64 @@ Joc::Joc(const std::string &fisier_echipe, const std::string &fisier_jucatori)
 
     while (true)
     {
-        Jucator jucator;
-        if (!(fin_jucatori >> jucator))
+        JucatorFotbal jucator_fotbal;
+        if (!(fin_jucatori_fotbal >> jucator_fotbal))
             break;
 
-        this->jucatori.push_back(jucator);
+        this->jucatori_fotbal.push_back(jucator_fotbal);
     }
 
-    fin_jucatori.close();
+    fin_jucatori_fotbal.close();
+
+    std::ifstream fin_jucatori_box(fisier_sportivi_box);
+    if (!fin_jucatori_box)
+    {
+        std::cout << "===============================================\n"
+                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
+                  << "===============================================\n"
+                  << "Nu s-a putut deschide fisierul pentru boxeri!\n"
+                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
+                  << "Asigura-te ca calea catre fisier este corecta.\n"
+                  << "===============================================\n";
+
+        return;
+    }
+
+    while (true)
+    {
+        JucatorBox jucator_box;
+        if (!(fin_jucatori_box >> jucator_box))
+            break;
+
+        this->jucatori_box.push_back(jucator_box);
+    }
+
+    fin_jucatori_box.close();
+
+    std::ifstream fin_jucatori_inot(fisier_sportivi_inot);
+    if (!fin_jucatori_inot)
+    {
+        std::cout << "===============================================\n"
+                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
+                  << "===============================================\n"
+                  << "Nu s-a putut deschide fisierul pentru inotatori!\n"
+                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
+                  << "Asigura-te ca calea catre fisier este corecta.\n"
+                  << "===============================================\n";
+
+        return;
+    }
+
+    while (true)
+    {
+        JucatorInot jucator_inot;
+        if (!(fin_jucatori_inot >> jucator_inot))
+            break;
+
+        this->jucatori_inot.push_back(jucator_inot);
+    }
+
+    fin_jucatori_inot.close();
 }
 
 std::ostream &operator<<(std::ostream &os, const Joc &joc)
@@ -68,11 +131,25 @@ std::ostream &operator<<(std::ostream &os, const Joc &joc)
     {
         os << echipa;
     }
-    os << "Jucatori:\n";
-    for (const auto &jucator : joc.jucatori)
+
+    os << "Sportivi Fotbal:\n";
+    for (const auto &jucator : joc.jucatori_fotbal)
     {
         os << jucator;
     }
+
+    os << "Sportivi Box:\n";
+    for (const auto &jucator : joc.jucatori_box)
+    {
+        os << jucator;
+    }
+
+    os << "Sportivi Inot:\n";
+    for (const auto &jucator : joc.jucatori_inot)
+    {
+        os << jucator;
+    }
+
     return os;
 }
 

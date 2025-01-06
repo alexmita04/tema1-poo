@@ -1,0 +1,9 @@
+Vinicius 22 1 atacant 7
+Rodrygo 22 2 atacant 11
+Bellingham 20 3 mijlocas 5
+Lewandowski 34 4 atacant 9
+Fati 21 5 atacant 10
+Pedri 21 6 mijlocas 8
+Kimmich 28 7 mijlocas 6
+Müller 34 8 atacant 25
+Sane 27 9 mijlocas 10
