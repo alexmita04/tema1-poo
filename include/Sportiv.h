@@ -18,7 +18,7 @@ public:
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
     virtual ~Sportiv();
 
-    virtual std::unique_ptr<Sportiv> clone() const = 0;
+    virtual std::shared_ptr<Sportiv> clone() const = 0;
     virtual bool nuEsteFotbalist() const = 0;
     std::string getNume()
     {
@@ -48,7 +48,7 @@ public:
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
     ~JucatorFotbal() override;
 
-    std::unique_ptr<Sportiv> clone() const override;
+    std::shared_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
 };
 
@@ -65,7 +65,7 @@ public:
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
     ~JucatorBox() override;
 
-    std::unique_ptr<Sportiv> clone() const override;
+    std::shared_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
 };
 
@@ -82,7 +82,7 @@ public:
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
     ~JucatorInot() override;
 
-    std::unique_ptr<Sportiv> clone() const override;
+    std::shared_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
 };
 

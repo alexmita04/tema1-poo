@@ -68,9 +68,9 @@ JucatorFotbal::~JucatorFotbal()
     --counter_jucatori_fotbal;
 }
 
-std::unique_ptr<Sportiv> JucatorFotbal::clone() const
+std::shared_ptr<Sportiv> JucatorFotbal::clone() const
 {
-    return std::make_unique<JucatorFotbal>(*this);
+    return std::make_shared<JucatorFotbal>(*this);
 }
 
 bool JucatorFotbal::nuEsteFotbalist() const
@@ -104,9 +104,9 @@ JucatorBox::~JucatorBox()
     --counter_jucatori_box;
 }
 
-std::unique_ptr<Sportiv> JucatorBox::clone() const
+std::shared_ptr<Sportiv> JucatorBox::clone() const
 {
-    return std::make_unique<JucatorBox>(*this);
+    return std::make_shared<JucatorBox>(*this);
 }
 
 bool JucatorBox::nuEsteFotbalist() const
@@ -140,9 +140,9 @@ JucatorInot::~JucatorInot()
     --counter_jucatori_inot;
 }
 
-std::unique_ptr<Sportiv> JucatorInot::clone() const
+std::shared_ptr<Sportiv> JucatorInot::clone() const
 {
-    return std::make_unique<JucatorInot>(*this);
+    return std::make_shared<JucatorInot>(*this);
 }
 
 bool JucatorInot::nuEsteFotbalist() const

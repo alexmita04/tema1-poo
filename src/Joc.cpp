@@ -237,6 +237,8 @@ void Joc::tura_joc()
     else if (index >= this->jucatori.size())
     {
         throw InvalidPlayerException("Index invalid ales.");
+
+        return;
     }
 
     std::string nume_jucator_ales = this->jucatori[index]->getNume();
@@ -313,21 +315,20 @@ size_t Joc::genereaza_jucator_random()
 
     return numar;
 }
-
 void Joc::populate_jucatori()
 {
     for (const auto &fotbalist : jucatori_fotbal)
     {
-        jucatori.push_back(fotbalist.clone());
+        jucatori.push_back(std::make_shared<JucatorFotbal>(fotbalist));
     }
 
     for (const auto &boxer : jucatori_box)
     {
-        jucatori.push_back(boxer.clone());
+        jucatori.push_back(std::make_shared<JucatorBox>(boxer));
     }
 
     for (const auto &inotator : jucatori_inot)
     {
-        jucatori.push_back(inotator.clone());
+        jucatori.push_back(std::make_shared<JucatorInot>(inotator));
     }
 }
