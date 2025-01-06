@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include "../include/Exceptions.h"
 
 Joc::Joc(const Scor &scorul_jocului_,
          const std::vector<Echipa> &echipe_,
@@ -29,12 +30,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_echipe(fisier_echipe);
     if (!fin_echipe)
     {
-        std::cout << "===============================================\n"
-                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
-                  << "===============================================\n"
-                  << "Nu s-a putut deschide fisierul pentru echipe!\n"
-                  << "Asigura-te ca fisierul exista si este accesibil.\n"
-                  << "===============================================\n";
+        throw FileOpenException(fisier_echipe);
 
         return;
     }
@@ -53,13 +49,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_jucatori_fotbal(fisier_sportivi_fotbal);
     if (!fin_jucatori_fotbal)
     {
-        std::cout << "===============================================\n"
-                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
-                  << "===============================================\n"
-                  << "Nu s-a putut deschide fisierul pentru fotbalisti!\n"
-                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
-                  << "Asigura-te ca calea catre fisier este corecta.\n"
-                  << "===============================================\n";
+        throw FileOpenException(fisier_sportivi_fotbal);
 
         return;
     }
@@ -78,13 +68,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_jucatori_box(fisier_sportivi_box);
     if (!fin_jucatori_box)
     {
-        std::cout << "===============================================\n"
-                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
-                  << "===============================================\n"
-                  << "Nu s-a putut deschide fisierul pentru boxeri!\n"
-                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
-                  << "Asigura-te ca calea catre fisier este corecta.\n"
-                  << "===============================================\n";
+        throw FileOpenException(fisier_sportivi_box);
 
         return;
     }
@@ -103,13 +87,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_jucatori_inot(fisier_sportivi_inot);
     if (!fin_jucatori_inot)
     {
-        std::cout << "===============================================\n"
-                  << "         EROARE LA DESCHIDEREA FISIERULUI      \n"
-                  << "===============================================\n"
-                  << "Nu s-a putut deschide fisierul pentru inotatori!\n"
-                  << "Verifica daca fisierul exista si daca ai permisiuni de citire.\n"
-                  << "Asigura-te ca calea catre fisier este corecta.\n"
-                  << "===============================================\n";
+        throw FileOpenException(fisier_sportivi_inot);
 
         return;
     }
@@ -251,12 +229,7 @@ void Joc::tura_joc()
     }
     else if (index >= this->jucatori.size())
     {
-        std::cout << "Introdu un numar valid.\n"
-                  << "Te rog sa alegi un index intre 0 si "
-                  << this->jucatori.size() - 1 << ",\n"
-                  << "care reprezinta jucatorii disponibili.\n";
-
-        return;
+        throw InvalidPlayerException("Index invalid ales.");
     }
 
     std::string nume_jucator_ales = this->jucatori[index]->getNume();
@@ -284,6 +257,7 @@ void Joc::tura_joc()
                       << "Nu te descuraja! Poate data viitoare vei fi mai norocos.\n"
                       << "Memoreaza jucatorii si nu-i alege de doua ori!\n"
                       << "===============================================\n";
+            throw GameOverException("Ati pierdut jocul!");
 
             return;
         }
