@@ -170,6 +170,13 @@ void Joc::descriere_joc()
               << "și va trebui să o iei de la capăt!\n\n"
               << "Și nu uita: de fiecare dată când selectezi un jucător,\n"
               << "aceștia se vor amesteca. Fii atent și concentrează-te!\n\n"
+              << "Important: În lista pe care o vei primi nu sunt numai fotbaliști!\n"
+              << "Vor fi și boxeri și înotători, dar tu trebuie să alegi doar fotbaliștii,\n"
+              << "fără să te repeți. Fiecare sportiv are un număr asociat, care poate însemna:\n"
+              << "- Numărul de pe tricoul fotbalistului\n"
+              << "- Greutatea boxerului\n"
+              << "- Timpul record al înotătorului\n\n"
+              << "Aceste informații îți vor fi de ajutor. Concentrează-te!\n\n"
               << "Good luck!\n"
               << "===================================\n";
 };
@@ -251,7 +258,7 @@ void Joc::tura_joc()
             std::cout << "===============================================\n"
                       << "               Din pacate ai pierdut...       \n"
                       << "===============================================\n"
-                      << "Ai incercat sa alegi un jucator deja selectat,\n"
+                      << "Ai incercat sa alegi un jucator deja selectat sau alt tip de sportiv,\n"
                       << "si din aceasta cauza jocul tau a fost resetat.\n"
                       << "Incearca sa fii mai atent la jucatorii pe care ii alegi.\n"
                       << "Nu te descuraja! Poate data viitoare vei fi mai norocos.\n"
