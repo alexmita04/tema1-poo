@@ -18,7 +18,7 @@ class Joc
     std::vector<JucatorFotbal> jucatori_fotbal;
     std::vector<JucatorBox> jucatori_box;
     std::vector<JucatorInot> jucatori_inot;
-    std::vector<std::shared_ptr<Sportiv>> jucatori;
+    std::vector<std::unique_ptr<Sportiv>> jucatori;
     std::vector<std::string> jucatori_selectati;
     int game_running;
 
@@ -32,6 +32,7 @@ public:
         const std::string &fisier_sportivi_fotbal,
         const std::string &fisier_sportivi_box,
         const std::string &fisier_sportivi_inot);
+    // ~Joc();
 
     friend std::ostream &operator<<(std::ostream &os, const Joc &joc);
     void start_game();

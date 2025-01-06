@@ -7,22 +7,6 @@ int JucatorFotbal::counter_jucatori_fotbal = 0;
 int JucatorBox::counter_jucatori_box = 0;
 int JucatorInot::counter_jucatori_inot = 0;
 
-Sportiv::Sportiv(const Sportiv &other)
-    : nume(other.nume), varsta(other.varsta), id(other.id)
-{
-    ++counter_jucatori;
-}
-
-Sportiv &Sportiv::operator=(const Sportiv &other)
-{
-    if (this == &other)
-        return *this;
-    nume = other.nume;
-    varsta = other.varsta;
-    id = other.id;
-    return *this;
-}
-
 Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
     : nume(nume_), varsta(varsta_), id(id_)
 {
@@ -57,22 +41,6 @@ std::istream &operator>>(std::istream &is, Sportiv &sportiv_)
     return is;
 }
 
-JucatorFotbal::JucatorFotbal(const JucatorFotbal &other)
-    : Sportiv(other), post(other.post), numar_tricou(other.numar_tricou)
-{
-    ++counter_jucatori_fotbal;
-}
-
-JucatorFotbal &JucatorFotbal::operator=(const JucatorFotbal &other)
-{
-    if (this == &other)
-        return *this;
-    Sportiv::operator=(other);
-    post = other.post;
-    numar_tricou = other.numar_tricou;
-    return *this;
-}
-
 void JucatorFotbal::afisare(std::ostream &os) const
 {
     os << numar_tricou;
@@ -100,29 +68,14 @@ JucatorFotbal::~JucatorFotbal()
     --counter_jucatori_fotbal;
 }
 
-std::shared_ptr<Sportiv> JucatorFotbal::clone() const
+std::unique_ptr<Sportiv> JucatorFotbal::clone() const
 {
-    return std::make_shared<JucatorFotbal>(*this);
+    return std::make_unique<JucatorFotbal>(*this);
 }
 
 bool JucatorFotbal::nuEsteFotbalist() const
 {
     return false;
-}
-
-JucatorBox::JucatorBox(const JucatorBox &other)
-    : Sportiv(other), greutate(other.greutate)
-{
-    ++counter_jucatori_box;
-}
-
-JucatorBox &JucatorBox::operator=(const JucatorBox &other)
-{
-    if (this == &other)
-        return *this;
-    Sportiv::operator=(other);
-    greutate = other.greutate;
-    return *this;
 }
 
 void JucatorBox::afisare(std::ostream &os) const
@@ -151,29 +104,14 @@ JucatorBox::~JucatorBox()
     --counter_jucatori_box;
 }
 
-std::shared_ptr<Sportiv> JucatorBox::clone() const
+std::unique_ptr<Sportiv> JucatorBox::clone() const
 {
-    return std::make_shared<JucatorBox>(*this);
+    return std::make_unique<JucatorBox>(*this);
 }
 
 bool JucatorBox::nuEsteFotbalist() const
 {
     return true;
-}
-
-JucatorInot::JucatorInot(const JucatorInot &other)
-    : Sportiv(other), timp_record(other.timp_record)
-{
-    ++counter_jucatori_inot;
-}
-
-JucatorInot &JucatorInot::operator=(const JucatorInot &other)
-{
-    if (this == &other)
-        return *this;
-    Sportiv::operator=(other);
-    timp_record = other.timp_record;
-    return *this;
 }
 
 void JucatorInot::afisare(std::ostream &os) const
@@ -202,9 +140,9 @@ JucatorInot::~JucatorInot()
     --counter_jucatori_inot;
 }
 
-std::shared_ptr<Sportiv> JucatorInot::clone() const
+std::unique_ptr<Sportiv> JucatorInot::clone() const
 {
-    return std::make_shared<JucatorInot>(*this);
+    return std::make_unique<JucatorInot>(*this);
 }
 
 bool JucatorInot::nuEsteFotbalist() const
