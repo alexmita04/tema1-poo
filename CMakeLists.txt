@@ -48,7 +48,6 @@ add_executable(${PROJECT_NAME}
     src/Joc.cpp
     src/Sportiv.cpp
     src/Scor.cpp
-    src/Exceptions.cpp
 )
 
 include(cmake/CompilerFlags.cmake)
