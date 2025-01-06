@@ -44,7 +44,7 @@ public:
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const;
+    virtual bool nuEsteFotbalist() const override;
 };
 
 class JucatorBox : public Sportiv
