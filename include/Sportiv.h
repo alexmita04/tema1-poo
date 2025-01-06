@@ -16,6 +16,8 @@ public:
     static int counter_jucatori;
 
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
+    Sportiv(const Sportiv &other);
+    Sportiv &operator=(const Sportiv &other);
     virtual ~Sportiv();
 
     virtual std::unique_ptr<Sportiv> clone() const = 0;
@@ -46,6 +48,8 @@ public:
 
     JucatorFotbal();
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
+    JucatorFotbal(const JucatorFotbal &other);
+    JucatorFotbal &operator=(const JucatorFotbal &other);
     ~JucatorFotbal() override;
 
     std::unique_ptr<Sportiv> clone() const override;
@@ -63,6 +67,8 @@ public:
 
     JucatorBox();
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
+    JucatorBox(const JucatorBox &other);
+    JucatorBox &operator=(const JucatorBox &other);
     ~JucatorBox() override;
 
     std::unique_ptr<Sportiv> clone() const override;
@@ -80,6 +86,8 @@ public:
 
     JucatorInot();
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
+    JucatorInot(const JucatorInot &other);
+    JucatorInot &operator=(const JucatorInot &other);
     ~JucatorInot() override;
 
     std::unique_ptr<Sportiv> clone() const override;

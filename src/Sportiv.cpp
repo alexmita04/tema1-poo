@@ -13,6 +13,23 @@ Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
     ++counter_jucatori;
 }
 
+Sportiv::Sportiv(const Sportiv &other)
+    : nume(other.nume), varsta(other.varsta), id(other.id)
+{
+    ++counter_jucatori;
+}
+
+Sportiv &Sportiv::operator=(const Sportiv &other)
+{
+    if (this != &other)
+    {
+        nume = other.nume;
+        varsta = other.varsta;
+        id = other.id;
+    }
+    return *this;
+}
+
 Sportiv::~Sportiv()
 {
     --counter_jucatori;
@@ -52,6 +69,23 @@ void JucatorFotbal::citire(std::istream &is)
     is >> numar_tricou;
 }
 
+JucatorFotbal::JucatorFotbal(const JucatorFotbal &other)
+    : Sportiv(other), post(other.post), numar_tricou(other.numar_tricou)
+{
+    ++counter_jucatori_fotbal;
+}
+
+JucatorFotbal &JucatorFotbal::operator=(const JucatorFotbal &other)
+{
+    if (this != &other)
+    {
+        Sportiv::operator=(other);
+        post = other.post;
+        numar_tricou = other.numar_tricou;
+    }
+    return *this;
+}
+
 JucatorFotbal::JucatorFotbal() : Sportiv(), post("Necunoscut"), numar_tricou(0)
 {
     ++counter_jucatori_fotbal;
@@ -76,6 +110,22 @@ std::unique_ptr<Sportiv> JucatorFotbal::clone() const
 bool JucatorFotbal::nuEsteFotbalist() const
 {
     return false;
+}
+
+JucatorBox::JucatorBox(const JucatorBox &other)
+    : Sportiv(other), greutate(other.greutate)
+{
+    ++counter_jucatori_box;
+}
+
+JucatorBox &JucatorBox::operator=(const JucatorBox &other)
+{
+    if (this != &other)
+    {
+        Sportiv::operator=(other);
+        greutate = other.greutate;
+    }
+    return *this;
 }
 
 void JucatorBox::afisare(std::ostream &os) const
@@ -112,6 +162,22 @@ std::unique_ptr<Sportiv> JucatorBox::clone() const
 bool JucatorBox::nuEsteFotbalist() const
 {
     return true;
+}
+
+JucatorInot::JucatorInot(const JucatorInot &other)
+    : Sportiv(other), timp_record(other.timp_record)
+{
+    ++counter_jucatori_inot;
+}
+
+JucatorInot &JucatorInot::operator=(const JucatorInot &other)
+{
+    if (this != &other)
+    {
+        Sportiv::operator=(other);
+        timp_record = other.timp_record;
+    }
+    return *this;
 }
 
 void JucatorInot::afisare(std::ostream &os) const
