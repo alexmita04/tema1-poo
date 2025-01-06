@@ -7,16 +7,38 @@ Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
 
 Sportiv::~Sportiv() {}
 
-std::istream &operator>>(std::istream &is, Sportiv &sportiv)
+std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_)
 {
-    sportiv.citeste(is);
+    os << sportiv_.nume << " ";
+    sportiv_.afisare(os);
+    return os;
+}
+std::istream &operator>>(std::istream &is, Sportiv &sportiv_)
+{
+    std::string nume;
+    int varsta, id;
+
+    is >> nume;
+    is >> varsta;
+    is >> id;
+
+    sportiv_.nume = nume;
+    sportiv_.varsta = varsta;
+    sportiv_.id = id;
+
+    sportiv_.citire(is);
     return is;
 }
 
-std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv)
+void JucatorFotbal::afisare(std::ostream &os) const
 {
-    sportiv.scrie(os);
-    return os;
+    os << numar_tricou;
+}
+
+void JucatorFotbal::citire(std::istream &is)
+{
+    is >> post;
+    is >> numar_tricou;
 }
 
 JucatorFotbal::JucatorFotbal() : Sportiv(), post("Necunoscut"), numar_tricou(0) {}
@@ -34,18 +56,19 @@ bool JucatorFotbal::nuEsteFotbalist() const
     return false;
 }
 
-void JucatorFotbal::citeste(std::istream &is)
+void JucatorBox::afisare(std::ostream &os) const
 {
-    is >> nume >> varsta >> id >> post >> numar_tricou;
+    os << greutate;
 }
 
-void JucatorFotbal::scrie(std::ostream &os) const
+void JucatorBox::citire(std::istream &is)
 {
-    os << "Jucator Fotbal: " << nume << ", Varsta: " << varsta << ", ID: " << id
-       << ", Post: " << post << ", Numar tricou: " << numar_tricou;
+    is >> greutate;
 }
 
-JucatorBox::JucatorBox() : Sportiv(), greutate(0.0) {}
+JucatorBox::JucatorBox() : Sportiv(), greutate(0.0)
+{
+}
 
 JucatorBox::JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_)
     : Sportiv(nume_, varsta_, id_), greutate(greutate_) {}
@@ -60,15 +83,14 @@ bool JucatorBox::nuEsteFotbalist() const
     return true;
 }
 
-void JucatorBox::citeste(std::istream &is)
+void JucatorInot::afisare(std::ostream &os) const
 {
-    is >> nume >> varsta >> id >> greutate;
+    os << timp_record;
 }
 
-void JucatorBox::scrie(std::ostream &os) const
+void JucatorInot::citire(std::istream &is)
 {
-    os << "Jucator Box: " << nume << ", Varsta: " << varsta << ", ID: " << id
-       << ", Greutate: " << greutate << " kg";
+    is >> timp_record;
 }
 
 JucatorInot::JucatorInot() : Sportiv(), timp_record(0.0) {}
@@ -84,15 +106,4 @@ std::unique_ptr<Sportiv> JucatorInot::clone() const
 bool JucatorInot::nuEsteFotbalist() const
 {
     return true;
-}
-
-void JucatorInot::citeste(std::istream &is)
-{
-    is >> nume >> varsta >> id >> timp_record;
-}
-
-void JucatorInot::scrie(std::ostream &os) const
-{
-    os << "Jucator Inot: " << nume << ", Varsta: " << varsta << ", ID: " << id
-       << ", Timp record: " << timp_record << " secunde";
 }

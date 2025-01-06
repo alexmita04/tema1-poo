@@ -7,7 +7,7 @@
 
 class Sportiv
 {
-protected:
+private:
     std::string nume;
     int varsta;
     int id;
@@ -18,15 +18,17 @@ public:
 
     virtual std::unique_ptr<Sportiv> clone() const = 0;
     virtual bool nuEsteFotbalist() const = 0;
-    virtual void citeste(std::istream &is) = 0;
-    virtual void scrie(std::ostream &os) const = 0;
     std::string getNume()
     {
         return this->nume;
     }
 
-    friend std::istream &operator>>(std::istream &is, Sportiv &sportiv);
-    friend std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv);
+    friend std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_);
+    friend std::istream &operator>>(std::istream &is, Sportiv &sportiv_);
+
+protected:
+    virtual void afisare(std::ostream &os) const = 0;
+    virtual void citire(std::istream &is) = 0;
 };
 
 class JucatorFotbal : public Sportiv
@@ -34,19 +36,22 @@ class JucatorFotbal : public Sportiv
     std::string post;
     int numar_tricou;
 
+    void afisare(std::ostream &os) const override;
+    void citire(std::istream &is) override;
+
 public:
     JucatorFotbal();
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
-    void citeste(std::istream &is) override;
-    void scrie(std::ostream &os) const override;
+    virtual bool nuEsteFotbalist() const;
 };
 
 class JucatorBox : public Sportiv
 {
     double greutate;
+    void afisare(std::ostream &os) const override;
+    void citire(std::istream &is) override;
 
 public:
     JucatorBox();
@@ -54,13 +59,13 @@ public:
 
     std::unique_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
-    void citeste(std::istream &is) override;
-    void scrie(std::ostream &os) const override;
 };
 
 class JucatorInot : public Sportiv
 {
     double timp_record;
+    void afisare(std::ostream &os) const override;
+    void citire(std::istream &is) override;
 
 public:
     JucatorInot();
@@ -68,8 +73,6 @@ public:
 
     std::unique_ptr<Sportiv> clone() const override;
     virtual bool nuEsteFotbalist() const override;
-    void citeste(std::istream &is) override;
-    void scrie(std::ostream &os) const override;
 };
 
 #endif
