@@ -18,8 +18,12 @@ public:
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
     virtual ~Sportiv();
 
+    Sportiv(const Sportiv &other);
+    Sportiv &operator=(const Sportiv &other);
+
     virtual std::shared_ptr<Sportiv> clone() const = 0;
     virtual bool nuEsteFotbalist() const = 0;
+
     std::string getNume()
     {
         return this->nume;
@@ -48,13 +52,17 @@ public:
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
     ~JucatorFotbal() override;
 
+    JucatorFotbal(const JucatorFotbal &other);
+    JucatorFotbal &operator=(const JucatorFotbal &other);
+
     std::shared_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
+    bool nuEsteFotbalist() const override;
 };
 
 class JucatorBox : public Sportiv
 {
     double greutate;
+
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
 
@@ -65,13 +73,17 @@ public:
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
     ~JucatorBox() override;
 
+    JucatorBox(const JucatorBox &other);
+    JucatorBox &operator=(const JucatorBox &other);
+
     std::shared_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
+    bool nuEsteFotbalist() const override;
 };
 
 class JucatorInot : public Sportiv
 {
     double timp_record;
+
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
 
@@ -82,8 +94,11 @@ public:
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
     ~JucatorInot() override;
 
+    JucatorInot(const JucatorInot &other);
+    JucatorInot &operator=(const JucatorInot &other);
+
     std::shared_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
+    bool nuEsteFotbalist() const override;
 };
 
 #endif
