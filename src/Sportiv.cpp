@@ -6,6 +6,7 @@ int Sportiv::counter_jucatori = 0;
 int JucatorFotbal::counter_jucatori_fotbal = 0;
 int JucatorBox::counter_jucatori_box = 0;
 int JucatorInot::counter_jucatori_inot = 0;
+int Tenisman::counter_jucatori_tenis = 0;
 
 Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
     : nume(nume_), varsta(varsta_), id(id_)
