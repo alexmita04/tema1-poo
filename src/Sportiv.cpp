@@ -215,3 +215,55 @@ bool JucatorInot::nuEsteFotbalist() const
 {
     return true;
 }
+
+Tenisman::Tenisman() : Sportiv(), numar_rachete(0)
+{
+    ++counter_jucatori_tenis;
+}
+
+Tenisman::Tenisman(const std::string &nume_, int varsta_, int id_, int numar_rachete_)
+    : Sportiv(nume_, varsta_, id_), numar_rachete(numar_rachete_)
+{
+    ++counter_jucatori_tenis;
+}
+
+Tenisman::Tenisman(const Tenisman &other)
+    : Sportiv(other), numar_rachete(other.numar_rachete)
+{
+    ++counter_jucatori_tenis;
+}
+
+Tenisman &Tenisman::operator=(const Tenisman &other)
+{
+    if (this != &other)
+    {
+        Sportiv::operator=(other);
+        numar_rachete = other.numar_rachete;
+    }
+    return *this;
+}
+
+Tenisman::~Tenisman()
+{
+    --counter_jucatori_tenis;
+}
+
+void Tenisman::afisare(std::ostream &os) const
+{
+    os << numar_rachete;
+}
+
+void Tenisman::citire(std::istream &is)
+{
+    is >> numar_rachete;
+}
+
+std::unique_ptr<Sportiv> Tenisman::clone() const
+{
+    return std::make_unique<Tenisman>(*this);
+}
+
+bool Tenisman::nuEsteFotbalist() const
+{
+    return true;
+}

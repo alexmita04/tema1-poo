@@ -94,4 +94,24 @@ public:
     virtual bool nuEsteFotbalist() const override;
 };
 
+class Tenisman : public Sportiv
+{
+private:
+    int numar_rachete;
+    void afisare(std::ostream &os) const override;
+    void citire(std::istream &is) override;
+
+public:
+    static int counter_jucatori_tenis;
+
+    Tenisman();
+    Tenisman(const std::string &nume_, int varsta_, int id_, int numar_rachete_);
+    Tenisman(const Tenisman &other);
+    Tenisman &operator=(const Tenisman &other);
+    ~Tenisman() override;
+
+    std::unique_ptr<Sportiv> clone() const override;
+    bool nuEsteFotbalist() const override;
+};
+
 #endif
