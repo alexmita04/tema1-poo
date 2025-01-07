@@ -165,9 +165,9 @@ void Joc::descriere_joc()
               << "Important: În lista pe care o vei primi nu sunt numai fotbaliști!\n"
               << "Vor fi și boxeri și înotători, dar tu trebuie să alegi doar fotbaliștii,\n"
               << "fără să te repeți. Fiecare sportiv are un număr asociat, care poate însemna:\n"
-              << "- Numărul de pe tricoul fotbalistului\n"
-              << "- Greutatea boxerului\n"
-              << "- Timpul record al înotătorului\n\n"
+              << "*- Numărul de pe tricoul fotbalistului\n"
+              << "*- Greutatea boxerului\n"
+              << "*- Timpul record al înotătorului\n\n"
               << "Aceste informații îți vor fi de ajutor. Concentrează-te!\n\n"
               << "Good luck!\n"
               << "===================================\n";
