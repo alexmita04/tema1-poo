@@ -2,6 +2,7 @@
 #define SCOR_H
 
 #include <iostream>
+#include "Exceptii.h"
 
 class Scor
 {

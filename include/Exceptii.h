@@ -14,22 +14,22 @@ public:
     const char *what() const noexcept override;
 };
 
-class FisierInaccesibilException : public JocException
+class JocNeinitializatException : public JocException
 {
 public:
-    explicit FisierInaccesibilException(const std::string &nume_fisier);
+    explicit JocNeinitializatException(const std::string &detalii);
 };
 
-class IndexInvalidException : public JocException
+class ScorInvalidException : public JocException
 {
 public:
-    explicit IndexInvalidException(size_t index);
+    explicit ScorInvalidException(const std::string &detalii);
 };
 
-class JucatorInvalidException : public JocException
+class TipJucatorException : public JocException
 {
 public:
-    explicit JucatorInvalidException(const std::string &nume_jucator);
+    explicit TipJucatorException(const std::string &detalii);
 };
 
 #endif

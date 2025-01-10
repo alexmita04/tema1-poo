@@ -1,7 +1,14 @@
 #include "../include/Scor.h"
+#include "../include/Exceptii.h"
 
 Scor::Scor(int scor_actual_, int cel_mai_bun_scor_)
-    : scor_actual(scor_actual_), cel_mai_bun_scor(cel_mai_bun_scor_), incercari(0) {}
+    : scor_actual(scor_actual_), cel_mai_bun_scor(cel_mai_bun_scor_), incercari(0)
+{
+    if (scor_actual < 0)
+    {
+        throw ScorInvalidException("Scor actual negativ la inițializare: " + std::to_string(scor_actual));
+    }
+}
 
 std::ostream &operator<<(std::ostream &os, const Scor &scor)
 {

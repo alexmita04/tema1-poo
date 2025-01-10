@@ -37,7 +37,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_echipe(fisier_echipe);
     if (!fin_echipe)
     {
-        throw FisierInaccesibilException(fisier_echipe);
+        throw std::ios_base::failure("Eroare: Nu s-a putut deschide fisierul: " + fisier_echipe);
     }
 
     while (true)
@@ -54,7 +54,7 @@ Joc::Joc(const std::string &fisier_echipe,
     std::ifstream fin_jucatori(fisier_sportivi);
     if (!fin_jucatori)
     {
-        throw FisierInaccesibilException(fisier_sportivi);
+        throw std::ios_base::failure("Eroare: Nu s-a putut deschide fisierul: " + fisier_sportivi);
     }
 
     std::string type;
@@ -106,12 +106,16 @@ Joc::Joc(const std::string &fisier_echipe,
         }
         else
         {
-            std::cerr << "Tip necunoscut de jucator: " << type << std::endl;
-            fin_jucatori.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignoră restul liniei
+            throw TipJucatorException("Nu exista acest tip de jucator");
         }
     }
 
     fin_jucatori.close();
+
+    if (echipe.empty() || jucatori.empty())
+    {
+        throw JocNeinitializatException("Jocul este neinitializat");
+    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Joc &joc)
@@ -223,7 +227,6 @@ void Joc::tura_joc()
                   << "Te rog sa alegi un index intre 0 si "
                   << this->jucatori.size() - 1 << ",\n"
                   << "care reprezinta jucatorii disponibili.\n";
-        throw IndexInvalidException(index);
 
         return;
     }

@@ -7,11 +7,11 @@ const char *JocException::what() const noexcept
     return mesaj.c_str();
 }
 
-FisierInaccesibilException::FisierInaccesibilException(const std::string &nume_fisier)
-    : JocException("Eroare: Fișierul \"" + nume_fisier + "\" nu poate fi accesat.") {}
+JocNeinitializatException::JocNeinitializatException(const std::string &detalii)
+    : JocException("Eroare: Jocul nu a fost inițializat corect. Detalii: " + detalii) {}
 
-IndexInvalidException::IndexInvalidException(size_t index)
-    : JocException("Eroare: Index invalid \"" + std::to_string(index) + "\".") {}
+ScorInvalidException::ScorInvalidException(const std::string &detalii)
+    : JocException("Eroare: Scorul este invalid. Detalii: " + detalii) {}
 
-JucatorInvalidException::JucatorInvalidException(const std::string &nume_jucator)
-    : JocException("Eroare: Jucătorul \"" + nume_jucator + "\" nu este valid pentru această acțiune.") {}
+TipJucatorException::TipJucatorException(const std::string &detalii)
+    : JocException("Eroare: Scorul este invalid. Detalii: " + detalii) {}
