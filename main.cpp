@@ -9,7 +9,7 @@ int main()
     try
     {
 
-        Joc joc_actual("echipe.txt", "sportivi_fotbal.txt", "sportivi_box.txt", "sportivi_inot.txt");
+        Joc joc_actual("echipe.txt", "jucatori.txt");
 
         joc_actual.start_game();
     }

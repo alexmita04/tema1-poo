@@ -6,7 +6,7 @@ int Sportiv::counter_jucatori = 0;
 int JucatorFotbal::counter_jucatori_fotbal = 0;
 int JucatorBox::counter_jucatori_box = 0;
 int JucatorInot::counter_jucatori_inot = 0;
-int Tenisman::counter_jucatori_tenis = 0;
+int JucatorTenis::counter_jucatori_tenis = 0;
 
 Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
     : nume(nume_), varsta(varsta_), id(id_)
@@ -217,54 +217,54 @@ bool JucatorInot::nuEsteFotbalist() const
     return true;
 }
 
-Tenisman::Tenisman() : Sportiv(), numar_rachete(0)
+JucatorTenis::JucatorTenis() : Sportiv(), clasament_wta(0)
 {
     ++counter_jucatori_tenis;
 }
 
-Tenisman::Tenisman(const std::string &nume_, int varsta_, int id_, int numar_rachete_)
-    : Sportiv(nume_, varsta_, id_), numar_rachete(numar_rachete_)
+JucatorTenis::JucatorTenis(const std::string &nume_, int varsta_, int id_, int clasament_wta_)
+    : Sportiv(nume_, varsta_, id_), clasament_wta(clasament_wta_)
 {
     ++counter_jucatori_tenis;
 }
 
-Tenisman::Tenisman(const Tenisman &other)
-    : Sportiv(other), numar_rachete(other.numar_rachete)
+JucatorTenis::JucatorTenis(const JucatorTenis &other)
+    : Sportiv(other), clasament_wta(other.clasament_wta)
 {
     ++counter_jucatori_tenis;
 }
 
-Tenisman &Tenisman::operator=(const Tenisman &other)
+JucatorTenis &JucatorTenis::operator=(const JucatorTenis &other)
 {
     if (this != &other)
     {
         Sportiv::operator=(other);
-        numar_rachete = other.numar_rachete;
+        clasament_wta = other.clasament_wta;
     }
     return *this;
 }
 
-Tenisman::~Tenisman()
+JucatorTenis::~JucatorTenis()
 {
     --counter_jucatori_tenis;
 }
 
-void Tenisman::afisare(std::ostream &os) const
+void JucatorTenis::afisare(std::ostream &os) const
 {
-    os << numar_rachete;
+    os << clasament_wta;
 }
 
-void Tenisman::citire(std::istream &is)
+void JucatorTenis::citire(std::istream &is)
 {
-    is >> numar_rachete;
+    is >> clasament_wta;
 }
 
-std::unique_ptr<Sportiv> Tenisman::clone() const
+std::unique_ptr<Sportiv> JucatorTenis::clone() const
 {
-    return std::make_unique<Tenisman>(*this);
+    return std::make_unique<JucatorTenis>(*this);
 }
 
-bool Tenisman::nuEsteFotbalist() const
+bool JucatorTenis::nuEsteFotbalist() const
 {
     return true;
 }

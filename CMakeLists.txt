@@ -72,6 +72,6 @@ if(APPLE)
 endif()
 
 include(cmake/CopyHelper.cmake)
-copy_files(FILES tastatura.txt echipe.txt sportivi_fotbal.txt sportivi_box.txt sportivi_inot.txt)
+copy_files(FILES tastatura.txt echipe.txt sportivi_fotbal.txt sportivi_box.txt sportivi_inot.txt jucatori.txt)
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds)
 # copy_files(DIRECTORY images sounds)
