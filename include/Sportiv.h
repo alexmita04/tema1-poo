@@ -20,6 +20,7 @@ public:
     Sportiv &operator=(const Sportiv &other);
     virtual ~Sportiv();
 
+    static std::unique_ptr<Sportiv> createJucator(const std::string &type, std::istream &is);
     virtual std::unique_ptr<Sportiv> clone() const = 0;
     virtual bool nuEsteFotbalist() const = 0;
     std::string getNume()

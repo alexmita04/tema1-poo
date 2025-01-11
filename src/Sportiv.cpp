@@ -1,4 +1,5 @@
 #include "../include/Sportiv.h"
+#include "../include/Exceptii.h"
 #include <iostream>
 #include <memory>
 
@@ -247,6 +248,44 @@ JucatorTenis &JucatorTenis::operator=(const JucatorTenis &other)
 JucatorTenis::~JucatorTenis()
 {
     --counter_jucatori_tenis;
+}
+
+std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::istream &is)
+{
+    if (type == "fotbalist")
+    {
+        std::string nume, post;
+        int varsta, id, numar_tricou;
+        is >> nume >> varsta >> id >> post >> numar_tricou;
+        return std::make_unique<JucatorFotbal>(nume, varsta, id, post, numar_tricou);
+    }
+    else if (type == "boxer")
+    {
+        std::string nume;
+        int varsta, id;
+        double greutate;
+        is >> nume >> varsta >> id >> greutate;
+        return std::make_unique<JucatorBox>(nume, varsta, id, greutate);
+    }
+    else if (type == "inotator")
+    {
+        std::string nume;
+        int varsta, id;
+        double timp_record;
+        is >> nume >> varsta >> id >> timp_record;
+        return std::make_unique<JucatorInot>(nume, varsta, id, timp_record);
+    }
+    else if (type == "tenismen")
+    {
+        std::string nume;
+        int varsta, id, clasament_wta;
+        is >> nume >> varsta >> id >> clasament_wta;
+        return std::make_unique<JucatorTenis>(nume, varsta, id, clasament_wta);
+    }
+    else
+    {
+        throw TipJucatorException("Nu exista acest tip de jucator");
+    }
 }
 
 void JucatorTenis::afisare(std::ostream &os) const

@@ -60,56 +60,9 @@ Joc::Joc(const std::string &fisier_echipe,
     std::string type;
     while (fin_jucatori >> type)
     {
-        if (type == "fotbalist")
-        {
-            std::string nume, post;
-            int varsta, id, numar_tricou;
-
-            fin_jucatori >> nume >> varsta >> id >> post >> numar_tricou;
-
-            auto jucator = std::make_unique<JucatorFotbal>(nume, varsta, id, post, numar_tricou);
-            jucatori.push_back(std::move(jucator));
-
-            numar_jucatori_fotbal++;
-        }
-        else if (type == "boxer")
-        {
-            std::string nume;
-            int varsta, id;
-            double greutate;
-
-            fin_jucatori >> nume >> varsta >> id >> greutate;
-
-            auto jucator = std::make_unique<JucatorBox>(nume, varsta, id, greutate);
-            jucatori.push_back(std::move(jucator));
-        }
-        else if (type == "inotator")
-        {
-            std::string nume;
-            int varsta, id;
-            double timp_record;
-
-            fin_jucatori >> nume >> varsta >> id >> timp_record;
-
-            auto jucator = std::make_unique<JucatorInot>(nume, varsta, id, timp_record);
-            jucatori.push_back(std::move(jucator));
-        }
-        else if (type == "tenismen")
-        {
-            std::string nume;
-            int varsta, id, clasament_wta;
-
-            fin_jucatori >> nume >> varsta >> id >> clasament_wta;
-
-            auto jucator = std::make_unique<JucatorTenis>(nume, varsta, id, clasament_wta);
-            jucatori.push_back(std::move(jucator));
-        }
-        else
-        {
-            throw TipJucatorException("Nu exista acest tip de jucator");
-        }
+        auto jucator = Sportiv::createJucator(type, fin_jucatori);
+        jucatori.push_back(std::move(jucator));
     }
-
     fin_jucatori.close();
 
     if (echipe.empty() || jucatori.empty())
