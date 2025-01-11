@@ -18,7 +18,7 @@ Joc::Joc(const Scor &scorul_jocului_,
     for (const auto &jucator : jucatori_)
     {
         jucatori.push_back(jucator->clone());
-        if (!jucator->nuEsteFotbalist())
+        if (dynamic_cast<JucatorFotbal *>(jucator.get()) != nullptr)
         {
             numar_jucatori_fotbal++;
         }
@@ -187,7 +187,7 @@ void Joc::tura_joc()
     std::string nume_jucator_ales = this->jucatori[index]->getNume();
     int gasit = this->cauta_jucator_in_jucatori_selectati(nume_jucator_ales);
 
-    if (gasit || this->jucatori[index]->nuEsteFotbalist())
+    if (gasit || dynamic_cast<JucatorFotbal *>(jucatori[index].get()) == nullptr)
     {
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();

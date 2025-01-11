@@ -22,7 +22,6 @@ public:
 
     static std::unique_ptr<Sportiv> createJucator(const std::string &type, std::istream &is);
     virtual std::unique_ptr<Sportiv> clone() const = 0;
-    virtual bool nuEsteFotbalist() const = 0;
     std::string getNume()
     {
         return this->nume;
@@ -54,7 +53,6 @@ public:
     ~JucatorFotbal() override;
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
 };
 
 class JucatorBox : public Sportiv
@@ -73,7 +71,6 @@ public:
     ~JucatorBox() override;
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
 };
 
 class JucatorInot : public Sportiv
@@ -92,7 +89,6 @@ public:
     ~JucatorInot() override;
 
     std::unique_ptr<Sportiv> clone() const override;
-    virtual bool nuEsteFotbalist() const override;
 };
 
 class JucatorTenis : public Sportiv
@@ -112,7 +108,6 @@ public:
     ~JucatorTenis() override;
 
     std::unique_ptr<Sportiv> clone() const override;
-    bool nuEsteFotbalist() const override;
 };
 
 #endif

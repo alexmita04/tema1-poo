@@ -109,11 +109,6 @@ std::unique_ptr<Sportiv> JucatorFotbal::clone() const
     return std::make_unique<JucatorFotbal>(*this);
 }
 
-bool JucatorFotbal::nuEsteFotbalist() const
-{
-    return false;
-}
-
 JucatorBox::JucatorBox(const JucatorBox &other)
     : Sportiv(other), greutate(other.greutate)
 {
@@ -161,11 +156,6 @@ std::unique_ptr<Sportiv> JucatorBox::clone() const
     return std::make_unique<JucatorBox>(*this);
 }
 
-bool JucatorBox::nuEsteFotbalist() const
-{
-    return true;
-}
-
 JucatorInot::JucatorInot(const JucatorInot &other)
     : Sportiv(other), timp_record(other.timp_record)
 {
@@ -211,11 +201,6 @@ JucatorInot::~JucatorInot()
 std::unique_ptr<Sportiv> JucatorInot::clone() const
 {
     return std::make_unique<JucatorInot>(*this);
-}
-
-bool JucatorInot::nuEsteFotbalist() const
-{
-    return true;
 }
 
 JucatorTenis::JucatorTenis() : Sportiv(), clasament_wta(0)
@@ -301,9 +286,4 @@ void JucatorTenis::citire(std::istream &is)
 std::unique_ptr<Sportiv> JucatorTenis::clone() const
 {
     return std::make_unique<JucatorTenis>(*this);
-}
-
-bool JucatorTenis::nuEsteFotbalist() const
-{
-    return true;
 }
