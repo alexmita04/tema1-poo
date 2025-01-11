@@ -117,6 +117,7 @@ void Joc::descriere_joc()
               << "și va trebui să o iei de la capăt!\n\n"
               << "Și nu uita: de fiecare dată când selectezi un jucător,\n"
               << "aceștia se vor amesteca. Fii atent și concentrează-te!\n\n"
+              << "Pentru mai multe reguli amanuntite citeste README.md\n\n"
               << "Good luck!\n"
               << "===================================\n";
 };
