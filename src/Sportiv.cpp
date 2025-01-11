@@ -1,6 +1,7 @@
 #include "../include/Sportiv.h"
 #include "../include/Exceptii.h"
 #include <iostream>
+#include <iomanip>
 #include <memory>
 
 int Sportiv::counter_jucatori = 0;
@@ -35,6 +36,11 @@ Sportiv &Sportiv::operator=(const Sportiv &other)
 Sportiv::~Sportiv()
 {
     --counter_jucatori;
+}
+
+std::string Sportiv::getNume()
+{
+    return this->nume;
 }
 
 std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_)
@@ -109,6 +115,18 @@ std::unique_ptr<Sportiv> JucatorFotbal::clone() const
     return std::make_unique<JucatorFotbal>(*this);
 }
 
+void JucatorFotbal::schimbaNume()
+{
+    if (nume.empty())
+        return;
+
+    size_t pos = rand() % nume.size();
+    while (nume[pos] == ' ')
+        pos = rand() % nume.size();
+
+    nume.replace(pos, 1, std::to_string(numar_tricou));
+}
+
 JucatorBox::JucatorBox(const JucatorBox &other)
     : Sportiv(other), greutate(other.greutate)
 {
@@ -154,6 +172,21 @@ JucatorBox::~JucatorBox()
 std::unique_ptr<Sportiv> JucatorBox::clone() const
 {
     return std::make_unique<JucatorBox>(*this);
+}
+
+void JucatorBox::schimbaNume()
+{
+    if (nume.empty())
+        return;
+
+    size_t first_space = nume.find(' ');
+    if (first_space == std::string::npos || first_space == 0 || first_space == nume.size() - 1)
+        return;
+
+    std::string prenume = nume.substr(0, first_space);
+    std::string nume_familie = nume.substr(first_space + 1);
+
+    nume = nume_familie + " " + prenume;
 }
 
 JucatorInot::JucatorInot(const JucatorInot &other)
@@ -203,6 +236,18 @@ std::unique_ptr<Sportiv> JucatorInot::clone() const
     return std::make_unique<JucatorInot>(*this);
 }
 
+void JucatorInot::schimbaNume()
+{
+    size_t space_pos = nume.find(' ');
+    if (space_pos == std::string::npos || space_pos == 0 || space_pos == nume.size() - 1)
+        return;
+
+    size_t last_char_nume = space_pos - 1;
+    size_t last_char_prenume = nume.size() - 1;
+
+    std::swap(nume[last_char_nume], nume[last_char_prenume]);
+}
+
 JucatorTenis::JucatorTenis() : Sportiv(), clasament_wta(0)
 {
     ++counter_jucatori_tenis;
@@ -241,7 +286,7 @@ std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::is
     {
         std::string nume, post;
         int varsta, id, numar_tricou;
-        is >> nume >> varsta >> id >> post >> numar_tricou;
+        is >> std::quoted(nume) >> varsta >> id >> post >> numar_tricou;
         return std::make_unique<JucatorFotbal>(nume, varsta, id, post, numar_tricou);
     }
     else if (type == "boxer")
@@ -249,7 +294,7 @@ std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::is
         std::string nume;
         int varsta, id;
         double greutate;
-        is >> nume >> varsta >> id >> greutate;
+        is >> std::quoted(nume) >> varsta >> id >> greutate;
         return std::make_unique<JucatorBox>(nume, varsta, id, greutate);
     }
     else if (type == "inotator")
@@ -257,20 +302,25 @@ std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::is
         std::string nume;
         int varsta, id;
         double timp_record;
-        is >> nume >> varsta >> id >> timp_record;
+        is >> std::quoted(nume) >> varsta >> id >> timp_record;
         return std::make_unique<JucatorInot>(nume, varsta, id, timp_record);
     }
     else if (type == "tenismen")
     {
         std::string nume;
         int varsta, id, clasament_wta;
-        is >> nume >> varsta >> id >> clasament_wta;
+        is >> std::quoted(nume) >> varsta >> id >> clasament_wta;
         return std::make_unique<JucatorTenis>(nume, varsta, id, clasament_wta);
     }
     else
     {
         throw TipJucatorException("Nu exista acest tip de jucator");
     }
+}
+
+void Sportiv::marcheazaAlegereGresita()
+{
+    this->schimbaNume();
 }
 
 void JucatorTenis::afisare(std::ostream &os) const
@@ -286,4 +336,21 @@ void JucatorTenis::citire(std::istream &is)
 std::unique_ptr<Sportiv> JucatorTenis::clone() const
 {
     return std::make_unique<JucatorTenis>(*this);
+}
+
+void JucatorTenis::schimbaNume()
+{
+    if (nume.size() < 2)
+        return;
+
+    size_t pos1 = rand() % nume.size();
+    while (nume[pos1] == ' ')
+        pos1 = rand() % nume.size();
+
+    size_t pos2 = rand() % nume.size();
+    while (nume[pos2] == ' ' || pos2 == pos1)
+        pos2 = rand() % nume.size();
+
+    nume[pos1] = '*';
+    nume[pos2] = '*';
 }

@@ -7,8 +7,10 @@
 
 class Sportiv
 {
-private:
+protected:
     std::string nume;
+
+private:
     int varsta;
     int id;
 
@@ -21,11 +23,11 @@ public:
     virtual ~Sportiv();
 
     static std::unique_ptr<Sportiv> createJucator(const std::string &type, std::istream &is);
+    void marcheazaAlegereGresita();
+
     virtual std::unique_ptr<Sportiv> clone() const = 0;
-    std::string getNume()
-    {
-        return this->nume;
-    }
+    std::string getNume();
+    virtual void schimbaNume() = 0;
 
     friend std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_);
     friend std::istream &operator>>(std::istream &is, Sportiv &sportiv_);
@@ -53,6 +55,7 @@ public:
     ~JucatorFotbal() override;
 
     std::unique_ptr<Sportiv> clone() const override;
+    void schimbaNume() override;
 };
 
 class JucatorBox : public Sportiv
@@ -71,6 +74,7 @@ public:
     ~JucatorBox() override;
 
     std::unique_ptr<Sportiv> clone() const override;
+    void schimbaNume() override;
 };
 
 class JucatorInot : public Sportiv
@@ -89,6 +93,7 @@ public:
     ~JucatorInot() override;
 
     std::unique_ptr<Sportiv> clone() const override;
+    void schimbaNume() override;
 };
 
 class JucatorTenis : public Sportiv
@@ -108,6 +113,7 @@ public:
     ~JucatorTenis() override;
 
     std::unique_ptr<Sportiv> clone() const override;
+    void schimbaNume() override;
 };
 
 #endif
