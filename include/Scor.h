@@ -19,6 +19,7 @@ public:
     void resetare_scor();
     void incrementare_incercari();
     bool verifica_incercari();
+    int get_incercari();
 
 private:
     void actualizare_cel_mai_bun_scor();

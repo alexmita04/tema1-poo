@@ -43,6 +43,11 @@ void Scor::incrementare_incercari()
     this->incercari += 1;
 }
 
+int Scor::get_incercari()
+{
+    return this->incercari;
+}
+
 void Scor::actualizare_cel_mai_bun_scor()
 {
     if (this->scor_actual > this->cel_mai_bun_scor)

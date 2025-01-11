@@ -193,7 +193,8 @@ void Joc::tura_joc()
         this->scorul_jocului.resetare_scor();
         this->scorul_jocului.incrementare_incercari();
 
-        this->jucatori[index]->marcheazaAlegereGresita();
+        int incercari_aux = scorul_jocului.get_incercari();
+        this->jucatori[index]->marcheazaAlegereGresita(incercari_aux);
 
         auto timp_sfarsit = std::chrono::high_resolution_clock::now();
         long long durata = calculeaza_timpul_scurs(timp_start, timp_sfarsit);

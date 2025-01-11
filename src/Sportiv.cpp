@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
+#include <cmath>
 
 int Sportiv::counter_jucatori = 0;
 int JucatorFotbal::counter_jucatori_fotbal = 0;
@@ -41,6 +42,12 @@ Sportiv::~Sportiv()
 std::string Sportiv::getNume()
 {
     return this->nume;
+}
+
+void Sportiv::marcheazaAlegereGresita(int incercari)
+{
+    this->schimbaNume();
+    this->schimbaPropietate(incercari);
 }
 
 std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_)
@@ -127,6 +134,22 @@ void JucatorFotbal::schimbaNume()
     nume.replace(pos, 1, std::to_string(numar_tricou));
 }
 
+void JucatorFotbal::schimbaPropietate(int incercari)
+{
+    int original_numar = numar_tricou;
+    for (int i = 1; i <= incercari; ++i)
+    {
+        int temp = original_numar;
+        int multiplier = 1;
+        while (temp > 0)
+        {
+            temp /= 10;
+            multiplier *= 10;
+        }
+        numar_tricou = numar_tricou * multiplier + original_numar;
+    }
+}
+
 JucatorBox::JucatorBox(const JucatorBox &other)
     : Sportiv(other), greutate(other.greutate)
 {
@@ -189,6 +212,20 @@ void JucatorBox::schimbaNume()
     nume = nume_familie + " " + prenume;
 }
 
+void JucatorBox::schimbaPropietate(int incercari)
+{
+    int suma_cifre = 0;
+    int greutate_int = static_cast<int>(greutate);
+
+    while (greutate_int > 0)
+    {
+        suma_cifre += greutate_int % 10;
+        greutate_int /= 10;
+    }
+
+    greutate = greutate * 10 + suma_cifre - incercari;
+}
+
 JucatorInot::JucatorInot(const JucatorInot &other)
     : Sportiv(other), timp_record(other.timp_record)
 {
@@ -246,6 +283,11 @@ void JucatorInot::schimbaNume()
     size_t last_char_prenume = nume.size() - 1;
 
     std::swap(nume[last_char_nume], nume[last_char_prenume]);
+}
+
+void JucatorInot::schimbaPropietate(int incercari)
+{
+    timp_record = timp_record * 10 + incercari;
 }
 
 JucatorTenis::JucatorTenis() : Sportiv(), clasament_wta(0)
@@ -318,11 +360,6 @@ std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::is
     }
 }
 
-void Sportiv::marcheazaAlegereGresita()
-{
-    this->schimbaNume();
-}
-
 void JucatorTenis::afisare(std::ostream &os) const
 {
     os << clasament_wta;
@@ -353,4 +390,9 @@ void JucatorTenis::schimbaNume()
 
     nume[pos1] = '*';
     nume[pos2] = '*';
+}
+
+void JucatorTenis::schimbaPropietate(int incercari)
+{
+    clasament_wta = pow(clasament_wta, incercari + 1);
 }
