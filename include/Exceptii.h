@@ -32,4 +32,10 @@ public:
     explicit TipJucatorException(const std::string &detalii);
 };
 
+class InputInvalidException : public JocException
+{
+public:
+    explicit InputInvalidException(const std::string &detalii);
+};
+
 #endif

@@ -9,6 +9,7 @@ class Sportiv
 {
 protected:
     std::string nume;
+    int marcat_ca_scapare = 0;
 
 private:
     int varsta;
@@ -29,6 +30,8 @@ public:
     std::string getNume();
     virtual void schimbaNume() = 0;
     virtual void schimbaPropietate(int incercari) = 0;
+    virtual int scapare() = 0;
+    int verificaScapare();
 
     friend std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_);
     friend std::istream &operator>>(std::istream &is, Sportiv &sportiv_);
@@ -58,6 +61,7 @@ public:
     std::unique_ptr<Sportiv> clone() const override;
     void schimbaNume() override;
     void schimbaPropietate(int incercari) override;
+    int scapare() override;
 };
 
 class JucatorBox : public Sportiv
@@ -78,6 +82,7 @@ public:
     std::unique_ptr<Sportiv> clone() const override;
     void schimbaNume() override;
     void schimbaPropietate(int incercari) override;
+    int scapare() override;
 };
 
 class JucatorInot : public Sportiv
@@ -98,6 +103,7 @@ public:
     std::unique_ptr<Sportiv> clone() const override;
     void schimbaNume() override;
     void schimbaPropietate(int incercari) override;
+    int scapare() override;
 };
 
 class JucatorTenis : public Sportiv
@@ -119,6 +125,7 @@ public:
     std::unique_ptr<Sportiv> clone() const override;
     void schimbaNume() override;
     void schimbaPropietate(int incercari) override;
+    int scapare() override;
 };
 
 #endif

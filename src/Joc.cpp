@@ -117,7 +117,6 @@ void Joc::descriere_joc()
               << "și va trebui să o iei de la capăt!\n\n"
               << "Și nu uita: de fiecare dată când selectezi un jucător,\n"
               << "aceștia se vor amesteca. Fii atent și concentrează-te!\n\n"
-              << "Pentru mai multe reguli amanuntite citeste README.md\n\n"
               << "Good luck!\n"
               << "===================================\n";
 };
@@ -190,6 +189,14 @@ void Joc::tura_joc()
 
     if (gasit || dynamic_cast<JucatorFotbal *>(jucatori[index].get()) == nullptr)
     {
+
+        int incercare = jucatori[index]->verificaScapare();
+        if (incercare)
+        {
+            std::cout << "Bravo ai raspuns corect!";
+            return;
+        }
+
         this->jucatori_selectati.clear();
         this->scorul_jocului.resetare_scor();
         this->scorul_jocului.incrementare_incercari();

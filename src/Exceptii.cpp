@@ -15,3 +15,6 @@ ScorInvalidException::ScorInvalidException(const std::string &detalii)
 
 TipJucatorException::TipJucatorException(const std::string &detalii)
     : JocException("Eroare: Scorul este invalid. Detalii: " + detalii) {}
+
+InputInvalidException::InputInvalidException(const std::string &detalii)
+    : JocException("Eroare: Input invalid. Detalii: " + detalii) {}

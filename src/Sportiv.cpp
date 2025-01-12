@@ -50,6 +50,15 @@ void Sportiv::marcheazaAlegereGresita(int incercari)
     this->schimbaPropietate(incercari);
 }
 
+int Sportiv::verificaScapare()
+{
+    if (this->marcat_ca_scapare == 1)
+        return 0;
+
+    std::cout << "Mai ai o sansa: Raspunde la urmatoarea intrebare:\n";
+    return this->scapare();
+}
+
 std::ostream &operator<<(std::ostream &os, const Sportiv &sportiv_)
 {
     os << sportiv_.nume << " ";
@@ -395,4 +404,74 @@ void JucatorTenis::schimbaNume()
 void JucatorTenis::schimbaPropietate(int incercari)
 {
     clasament_wta = pow(clasament_wta, incercari + 1);
+}
+
+int JucatorFotbal::scapare()
+{
+
+    std::cout << "Care este numarul de pe tricoul jucatorului: " << this->nume << "?\n";
+    int numar_tricou_aux;
+    std::cin >> numar_tricou_aux;
+
+    if (numar_tricou_aux < 0)
+    {
+        throw std::invalid_argument("Numarul de pe tricou nu poate fi mai mic decat 0.");
+    }
+    else if (this->numar_tricou == numar_tricou_aux)
+    {
+        this->marcat_ca_scapare = 1;
+        return 1;
+    }
+
+    return 0;
+}
+
+int JucatorBox::scapare()
+{
+
+    std::cout << "Are boxerul " << this->nume << " greutatea mai mare decat 80 sau mai mica?\n";
+    std::cout << "Tasteaza cifra 1 daca crezi ca are greutatea mai mare, sau 0 daca crezi ca are greutatea mai mica\n";
+    int alegere;
+    std::cin >> alegere;
+
+    if (alegere != 0 && alegere != 1)
+    {
+        return 0;
+    }
+    else if (alegere == 0 && this->greutate <= 80)
+        return 1;
+    else if (alegere == 1 && this->greutate >= 80)
+        return 1;
+
+    return 0;
+}
+int JucatorInot::scapare()
+{
+    std::cout << "Inotatorul " << this->nume << " are mai timpul record mai mic sau mai mare de 52 secunde\n";
+    std::cout << "Tasteaza cifra 1 daca crezi ca are greutatea mai mare, sau 0 daca crezi ca are greutatea mai mica\n";
+    int alegere;
+    std::cin >> alegere;
+    if (alegere != 0 && alegere != 1)
+    {
+        return 0;
+    }
+    else if (alegere == 0 && this->timp_record <= 52)
+        return 1;
+    else if (alegere == 1 && this->timp_record >= 52)
+        return 1;
+
+    return 0;
+}
+int JucatorTenis::scapare()
+{
+    std::cout << "Pe ce loc se afla in clasamentul WTA se afla tenismenul " << this->nume << "?\n";
+    int clasament_wta_aux;
+    std::cin >> clasament_wta_aux;
+    if (clasament_wta_aux < 0)
+    {
+        throw std::invalid_argument("Locul in clasamentul WTA nu poate fi mai mic decat 0.");
+    }
+    else if (this->clasament_wta == clasament_wta_aux)
+        return 1;
+    return 0;
 }
