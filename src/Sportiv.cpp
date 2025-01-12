@@ -30,6 +30,7 @@ Sportiv &Sportiv::operator=(const Sportiv &other)
         nume = other.nume;
         varsta = other.varsta;
         id = other.id;
+        marcat_ca_scapare = other.marcat_ca_scapare;
     }
     return *this;
 }
