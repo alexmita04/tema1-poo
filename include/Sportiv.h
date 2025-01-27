@@ -14,10 +14,9 @@ protected:
 private:
     int varsta;
     int id;
-
-public:
     static int counter_jucatori;
 
+public:
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
     Sportiv(const Sportiv &other);
     Sportiv &operator=(const Sportiv &other);
@@ -48,10 +47,9 @@ class JucatorFotbal : public Sportiv
 
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-
-public:
     static int counter_jucatori_fotbal;
 
+public:
     JucatorFotbal();
     JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_);
     JucatorFotbal(const JucatorFotbal &other);
@@ -69,10 +67,9 @@ class JucatorBox : public Sportiv
     double greutate;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-
-public:
     static int counter_jucatori_box;
 
+public:
     JucatorBox();
     JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_);
     JucatorBox(const JucatorBox &other);
@@ -90,10 +87,9 @@ class JucatorInot : public Sportiv
     double timp_record;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-
-public:
     static int counter_jucatori_inot;
 
+public:
     JucatorInot();
     JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_);
     JucatorInot(const JucatorInot &other);
@@ -112,10 +108,9 @@ private:
     int clasament_wta;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-
-public:
     static int counter_jucatori_tenis;
 
+public:
     JucatorTenis();
     JucatorTenis(const std::string &nume_, int varsta_, int id_, int numar_rachete_);
     JucatorTenis(const JucatorTenis &other);
