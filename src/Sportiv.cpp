@@ -416,7 +416,7 @@ int JucatorFotbal::scapare()
 
     if (numar_tricou_aux < 0)
     {
-        throw std::invalid_argument("Numarul de pe tricou nu poate fi mai mic decat 0.");
+        throw InputInvalidException("Numarul de pe tricou nu poate fi mai mic decat 0.");
     }
     else if (this->numar_tricou == numar_tricou_aux)
     {
@@ -470,7 +470,7 @@ int JucatorTenis::scapare()
     std::cin >> clasament_wta_aux;
     if (clasament_wta_aux < 0)
     {
-        throw std::invalid_argument("Locul in clasamentul WTA nu poate fi mai mic decat 0.");
+        throw InputInvalidException("Locul in clasamentul WTA nu poate fi mai mic decat 0.");
     }
     else if (this->clasament_wta == clasament_wta_aux)
         return 1;
