@@ -5,7 +5,32 @@
 #include <string>
 #include <memory>
 
-class Sportiv
+template <typename Derived>
+class Countable
+{
+    static int nrObiecte;
+
+protected:
+    Countable()
+    {
+        ++nrObiecte;
+    }
+    ~Countable()
+    {
+        --nrObiecte;
+    }
+
+public:
+    static int getNr()
+    {
+        return nrObiecte;
+    }
+};
+
+template <typename Derived>
+int Countable<Derived>::nrObiecte = 0;
+
+class Sportiv : public Countable<Sportiv>
 {
 protected:
     std::string nume;
@@ -14,7 +39,6 @@ protected:
 private:
     int varsta;
     int id;
-    static int counter_jucatori;
 
 public:
     explicit Sportiv(const std::string &nume_ = "", int varsta_ = 0, int id_ = 0);
@@ -40,14 +64,13 @@ protected:
     virtual void citire(std::istream &is) = 0;
 };
 
-class JucatorFotbal : public Sportiv
+class JucatorFotbal : public Sportiv, public Countable<JucatorFotbal>
 {
     std::string post;
     int numar_tricou;
 
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-    static int counter_jucatori_fotbal;
 
 public:
     JucatorFotbal();
@@ -62,12 +85,11 @@ public:
     int scapare() override;
 };
 
-class JucatorBox : public Sportiv
+class JucatorBox : public Sportiv, public Countable<JucatorBox>
 {
     double greutate;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-    static int counter_jucatori_box;
 
 public:
     JucatorBox();
@@ -82,12 +104,11 @@ public:
     int scapare() override;
 };
 
-class JucatorInot : public Sportiv
+class JucatorInot : public Sportiv, public Countable<JucatorInot>
 {
     double timp_record;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-    static int counter_jucatori_inot;
 
 public:
     JucatorInot();
@@ -102,13 +123,12 @@ public:
     int scapare() override;
 };
 
-class JucatorTenis : public Sportiv
+class JucatorTenis : public Sportiv, public Countable<JucatorTenis>
 {
 private:
     int clasament_wta;
     void afisare(std::ostream &os) const override;
     void citire(std::istream &is) override;
-    static int counter_jucatori_tenis;
 
 public:
     JucatorTenis();

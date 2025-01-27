@@ -5,22 +5,22 @@
 #include <memory>
 #include <cmath>
 
-int Sportiv::counter_jucatori = 0;
-int JucatorFotbal::counter_jucatori_fotbal = 0;
-int JucatorBox::counter_jucatori_box = 0;
-int JucatorInot::counter_jucatori_inot = 0;
-int JucatorTenis::counter_jucatori_tenis = 0;
+// int Sportiv::counter_jucatori = 0;
+// int JucatorFotbal::counter_jucatori_fotbal = 0;
+// int JucatorBox::counter_jucatori_box = 0;
+// int JucatorInot::counter_jucatori_inot = 0;
+// int JucatorTenis::counter_jucatori_tenis = 0;
 
 Sportiv::Sportiv(const std::string &nume_, int varsta_, int id_)
     : nume(nume_), varsta(varsta_), id(id_)
 {
-    ++counter_jucatori;
+    // ++counter_jucatori;
 }
 
 Sportiv::Sportiv(const Sportiv &other)
     : nume(other.nume), varsta(other.varsta), id(other.id)
 {
-    ++counter_jucatori;
+    // ++counter_jucatori;
 }
 
 Sportiv &Sportiv::operator=(const Sportiv &other)
@@ -37,7 +37,7 @@ Sportiv &Sportiv::operator=(const Sportiv &other)
 
 Sportiv::~Sportiv()
 {
-    --counter_jucatori;
+    // --counter_jucatori;
 }
 
 std::string Sportiv::getNume()
@@ -97,7 +97,7 @@ void JucatorFotbal::citire(std::istream &is)
 JucatorFotbal::JucatorFotbal(const JucatorFotbal &other)
     : Sportiv(other), post(other.post), numar_tricou(other.numar_tricou)
 {
-    ++counter_jucatori_fotbal;
+    // ++counter_jucatori_fotbal;
 }
 
 JucatorFotbal &JucatorFotbal::operator=(const JucatorFotbal &other)
@@ -113,18 +113,18 @@ JucatorFotbal &JucatorFotbal::operator=(const JucatorFotbal &other)
 
 JucatorFotbal::JucatorFotbal() : Sportiv(), post("Necunoscut"), numar_tricou(0)
 {
-    ++counter_jucatori_fotbal;
+    // ++counter_jucatori_fotbal;
 }
 
 JucatorFotbal::JucatorFotbal(const std::string &nume_, int varsta_, int id_, const std::string &post_, int numar_tricou_)
     : Sportiv(nume_, varsta_, id_), post(post_), numar_tricou(numar_tricou_)
 {
-    ++counter_jucatori_fotbal;
+    // ++counter_jucatori_fotbal;
 }
 
 JucatorFotbal::~JucatorFotbal()
 {
-    --counter_jucatori_fotbal;
+    // --counter_jucatori_fotbal;
 }
 
 std::unique_ptr<Sportiv> JucatorFotbal::clone() const
@@ -163,7 +163,7 @@ void JucatorFotbal::schimbaPropietate(int incercari)
 JucatorBox::JucatorBox(const JucatorBox &other)
     : Sportiv(other), greutate(other.greutate)
 {
-    ++counter_jucatori_box;
+    // ++counter_jucatori_box;
 }
 
 JucatorBox &JucatorBox::operator=(const JucatorBox &other)
@@ -188,18 +188,18 @@ void JucatorBox::citire(std::istream &is)
 
 JucatorBox::JucatorBox() : Sportiv(), greutate(0.0)
 {
-    ++counter_jucatori_box;
+    // ++counter_jucatori_box;
 }
 
 JucatorBox::JucatorBox(const std::string &nume_, int varsta_, int id_, double greutate_)
     : Sportiv(nume_, varsta_, id_), greutate(greutate_)
 {
-    ++counter_jucatori_box;
+    // ++counter_jucatori_box;
 }
 
 JucatorBox::~JucatorBox()
 {
-    --counter_jucatori_box;
+    // --counter_jucatori_box;
 }
 
 std::unique_ptr<Sportiv> JucatorBox::clone() const
@@ -239,7 +239,7 @@ void JucatorBox::schimbaPropietate(int incercari)
 JucatorInot::JucatorInot(const JucatorInot &other)
     : Sportiv(other), timp_record(other.timp_record)
 {
-    ++counter_jucatori_inot;
+    // ++counter_jucatori_inot;
 }
 
 JucatorInot &JucatorInot::operator=(const JucatorInot &other)
@@ -264,18 +264,18 @@ void JucatorInot::citire(std::istream &is)
 
 JucatorInot::JucatorInot() : Sportiv(), timp_record(0.0)
 {
-    ++counter_jucatori_inot;
+    // ++counter_jucatori_inot;
 }
 
 JucatorInot::JucatorInot(const std::string &nume_, int varsta_, int id_, double timp_record_)
     : Sportiv(nume_, varsta_, id_), timp_record(timp_record_)
 {
-    ++counter_jucatori_inot;
+    // ++counter_jucatori_inot;
 }
 
 JucatorInot::~JucatorInot()
 {
-    --counter_jucatori_inot;
+    // --counter_jucatori_inot;
 }
 
 std::unique_ptr<Sportiv> JucatorInot::clone() const
@@ -302,19 +302,19 @@ void JucatorInot::schimbaPropietate(int incercari)
 
 JucatorTenis::JucatorTenis() : Sportiv(), clasament_wta(0)
 {
-    ++counter_jucatori_tenis;
+    // ++counter_jucatori_tenis;
 }
 
 JucatorTenis::JucatorTenis(const std::string &nume_, int varsta_, int id_, int clasament_wta_)
     : Sportiv(nume_, varsta_, id_), clasament_wta(clasament_wta_)
 {
-    ++counter_jucatori_tenis;
+    // ++counter_jucatori_tenis;
 }
 
 JucatorTenis::JucatorTenis(const JucatorTenis &other)
     : Sportiv(other), clasament_wta(other.clasament_wta)
 {
-    ++counter_jucatori_tenis;
+    // ++counter_jucatori_tenis;
 }
 
 JucatorTenis &JucatorTenis::operator=(const JucatorTenis &other)
@@ -329,7 +329,7 @@ JucatorTenis &JucatorTenis::operator=(const JucatorTenis &other)
 
 JucatorTenis::~JucatorTenis()
 {
-    --counter_jucatori_tenis;
+    // --counter_jucatori_tenis;
 }
 
 std::unique_ptr<Sportiv> Sportiv::createJucator(const std::string &type, std::istream &is)

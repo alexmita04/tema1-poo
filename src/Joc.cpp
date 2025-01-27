@@ -106,17 +106,23 @@ void Joc::start_game()
 
 void Joc::descriere_joc()
 {
+
     std::cout << "===================================\n"
               << "          MEMORY GAME              \n"
               << "===================================\n"
-              << "Bine ai venit la Memory Game!\n\n"
+              << "Bine ai venit la Memory Game!\n"
               << "Scopul jocului este simplu:\n"
               << "Memorează jucătorii de fotbal pe care i-ai selectat,\n"
-              << "astfel încât să îi alegi pe toți fără să te repeți.\n\n"
+              << "astfel încât să îi alegi pe toți fără să te repeți.\n"
               << "Atenție! Dacă te repeți, scorul tău va deveni 0\n"
-              << "și va trebui să o iei de la capăt!\n\n"
+              << "și va trebui să o iei de la capăt!\n"
               << "Și nu uita: de fiecare dată când selectezi un jucător,\n"
-              << "aceștia se vor amesteca. Fii atent și concentrează-te!\n\n"
+              << "aceștia se vor amesteca. Fii atent și concentrează-te!\n"
+              << "Statistici despre jucători:\n"
+              << " - Jucători Fotbal: " << Countable<JucatorFotbal>::getNr() << "\n"
+              << " - Boxeri: " << Countable<JucatorBox>::getNr() << "\n"
+              << " - Înotători: " << Countable<JucatorInot>::getNr() << "\n"
+              << " - Tenismeni: " << Countable<JucatorTenis>::getNr() << "\n"
               << "Good luck!\n"
               << "===================================\n";
 };
