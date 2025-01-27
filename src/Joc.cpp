@@ -1,5 +1,4 @@
 #include "../include/Joc.h"
-#include "../include/Exceptii.h"
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -60,7 +59,8 @@ Joc::Joc(const std::string &fisier_echipe,
     std::string type;
     while (fin_jucatori >> type)
     {
-        auto jucator = Sportiv::createJucator(type, fin_jucatori);
+        // auto jucator = Sportiv::createJucator(type, fin_jucatori);
+        auto jucator = SportivFactory::createJucator(type, fin_jucatori);
         jucatori.push_back(std::move(jucator));
     }
     fin_jucatori.close();

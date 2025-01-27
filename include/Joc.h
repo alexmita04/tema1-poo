@@ -12,6 +12,7 @@
 #include "Scor.h"
 #include "Echipa.h"
 #include "Sportiv.h"
+#include "SportivFactory.h"
 
 class Joc
 {
